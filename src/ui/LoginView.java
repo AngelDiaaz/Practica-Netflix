@@ -107,7 +107,7 @@ public class LoginView {
 			
 			JLabel lblNewLabel = new JLabel("Login Netflix");
 			lblNewLabel.setForeground(Color.WHITE);
-			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 30));
+			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 30));
 			lblNewLabel.setBounds(113, 11, 207, 45);
 			frmLogin.getContentPane().add(lblNewLabel);
 		}

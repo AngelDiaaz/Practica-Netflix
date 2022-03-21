@@ -12,6 +12,8 @@ import javax.swing.JTextPane;
 
 import dao.ShowDAO;
 import models.Show;
+import javax.swing.SwingConstants;
+import java.awt.Color;
 
 public class FilmsView {
 
@@ -32,6 +34,7 @@ public class FilmsView {
 	private ArrayList<Show> shows;
 	private JTextPane txtCast;
 	private JTextPane txtDescription;
+	private int index = 0;
 	
 
 	/**
@@ -55,57 +58,60 @@ public class FilmsView {
 
 	private void configureComponents() {
 		frame = new JFrame();
+		frame.getContentPane().setBackground(new Color(153, 204, 204));
 		frame.setBounds(100, 100, 800, 550);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		lblTittle = new JLabel("");
-		lblTittle.setBounds(339, 11, 78, 71);
+		lblTittle.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTittle.setBounds(181, 12, 421, 71);
 		lblTittle.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblTittle);
 		
 		lblType = new JLabel("");
-		lblType.setBounds(58, 79, 84, 71);
+		lblType.setBounds(43, 79, 171, 71);
 		lblType.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblType);
 		
 		lblDirector = new JLabel("");
-		lblDirector.setBounds(564, 212, 134, 71);
+		lblDirector.setBounds(390, 140, 364, 71);
 		lblDirector.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblDirector);
 		
 		lblCountry = new JLabel("");
-		lblCountry.setBounds(245, 132, 108, 92);
+		lblCountry.setBounds(43, 128, 328, 92);
 		lblCountry.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblCountry);
 		
 		lblDateAdd = new JLabel("");
-		lblDateAdd.setBounds(58, 161, 125, 35);
+		lblDateAdd.setBounds(548, 97, 156, 35);
 		lblDateAdd.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblDateAdd);
 		
 		lblYear = new JLabel("");
-		lblYear.setBounds(474, 94, 78, 41);
+		lblYear.setBounds(390, 94, 127, 41);
 		lblYear.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblYear);
 		
 		lblRating = new JLabel("");
-		lblRating.setBounds(462, 156, 108, 44);
+		lblRating.setBounds(548, 222, 175, 44);
 		lblRating.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblRating);
 		
 		lblDuration = new JLabel("");
-		lblDuration.setBounds(253, 94, 84, 41);
+		lblDuration.setBounds(224, 94, 156, 41);
 		lblDuration.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblDuration);
 		
 		lblListed = new JLabel("");
-		lblListed.setBounds(58, 231, 466, 26);
+		lblListed.setBounds(43, 227, 495, 35);
 		lblListed.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblListed);
 		
 		lblDescription = new JLabel("Description");
-		lblDescription.setBounds(486, 270, 103, 71);
+		lblDescription.setForeground(Color.BLACK);
+		lblDescription.setBounds(534, 270, 103, 71);
 		lblDescription.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblDescription);
 		
@@ -122,7 +128,7 @@ public class FilmsView {
 		txtCast = new JTextPane();
 		txtCast.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtCast.setEditable(false);
-		txtCast.setBounds(58, 329, 328, 92);
+		txtCast.setBounds(43, 329, 343, 92);
 		frame.getContentPane().add(txtCast);
 		
 		txtDescription = new JTextPane();
@@ -131,37 +137,48 @@ public class FilmsView {
 		frame.getContentPane().add(txtDescription);
 		
 		JLabel lblCast = new JLabel("Cast");
+		lblCast.setForeground(Color.BLACK);
 		lblCast.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblCast.setBounds(168, 300, 46, 18);
+		lblCast.setBounds(181, 288, 46, 35);
 		frame.getContentPane().add(lblCast);
 		
-		verShows();
+		verShows(index);
 	}
 	
 	private void configureListeners() {
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				index--;
+				if (index < 0) { //Cuando el index es la primera posicion del array list
+					index = shows.size() - 1;
+				}
+				verShows(index);
 			}
 		});
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				index++;
+				if (index == shows.size()) { // Cuando el index es la ultima posicion del array list
+					index = 0;
+				}
+				verShows(index);
 			}
 		});
 	}
 	
-	public void verShows() {
+	public void verShows(int index) {
 		
-		lblTittle.setText(shows.get(0).getTitle());
-		lblType.setText(shows.get(0).getType());
-		lblDirector.setText(shows.get(0).getDirector());
-		lblCountry.setText(shows.get(0).getCountry());
-		lblDateAdd.setText(shows.get(0).getDate());
-		lblYear.setText(shows.get(0).getYear());
-		lblRating.setText(shows.get(0).getRating());
-		lblDuration.setText(shows.get(0).getDuration());
-		lblListed.setText(shows.get(0).getListed());
-		txtCast.setText(shows.get(0).getCast());
-		txtDescription.setText(shows.get(0).getDescription());
+		lblTittle.setText(shows.get(index).getTitle());
+		lblType.setText(shows.get(index).getType());
+		lblDirector.setText(shows.get(index).getDirector());
+		lblCountry.setText(shows.get(index).getCountry());
+		lblDateAdd.setText(shows.get(index).getDate());
+		lblYear.setText(shows.get(index).getYear());
+		lblRating.setText(shows.get(index).getRating());
+		lblDuration.setText(shows.get(index).getDuration());
+		lblListed.setText(shows.get(index).getListed());
+		txtCast.setText(shows.get(index).getCast());
+		txtDescription.setText(shows.get(index).getDescription());
 		
 		}
 	}

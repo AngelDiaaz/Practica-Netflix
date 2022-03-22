@@ -30,6 +30,8 @@ public class FilmsView {
 	private JLabel lblDescription;
 	private JButton btnBack;
 	private JButton btnNext;
+	private JTextPane txtListed;
+	private JLabel lblCast;
 	private ShowDAO showDAO;
 	private ArrayList<Show> shows;
 	private JTextPane txtCast;
@@ -59,43 +61,43 @@ public class FilmsView {
 	private void configureComponents() {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(new Color(153, 204, 204));
-		frame.setBounds(100, 100, 800, 550);
+		frame.setBounds(100, 100, 860, 570);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		lblTittle = new JLabel("");
 		lblTittle.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTittle.setBounds(181, 12, 421, 71);
+		lblTittle.setBounds(35, 0, 790, 71);
 		lblTittle.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblTittle);
 		
 		lblType = new JLabel("");
-		lblType.setBounds(43, 79, 171, 71);
+		lblType.setBounds(546, 125, 171, 71);
 		lblType.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblType);
 		
 		lblDirector = new JLabel("");
-		lblDirector.setBounds(390, 140, 364, 71);
+		lblDirector.setBounds(43, 130, 461, 55);
 		lblDirector.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblDirector);
 		
 		lblCountry = new JLabel("");
-		lblCountry.setBounds(43, 128, 328, 92);
+		lblCountry.setBounds(45, 82, 731, 55);
 		lblCountry.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblCountry);
 		
 		lblDateAdd = new JLabel("");
-		lblDateAdd.setBounds(548, 97, 156, 35);
+		lblDateAdd.setBounds(546, 196, 156, 35);
 		lblDateAdd.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblDateAdd);
 		
 		lblYear = new JLabel("");
-		lblYear.setBounds(390, 94, 127, 41);
+		lblYear.setBounds(692, 82, 127, 41);
 		lblYear.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblYear);
 		
 		lblRating = new JLabel("");
-		lblRating.setBounds(548, 222, 175, 44);
+		lblRating.setBounds(546, 247, 175, 44);
 		lblRating.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblRating);
 		
@@ -105,42 +107,48 @@ public class FilmsView {
 		frame.getContentPane().add(lblDuration);
 		
 		lblListed = new JLabel("");
-		lblListed.setBounds(43, 227, 495, 35);
+		lblListed.setBounds(197, 197, 76, 35);
 		lblListed.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblListed);
 		
 		lblDescription = new JLabel("Description");
 		lblDescription.setForeground(Color.BLACK);
-		lblDescription.setBounds(534, 270, 103, 71);
+		lblDescription.setBounds(569, 302, 103, 55);
 		lblDescription.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblDescription);
 		
 		btnBack = new JButton("Back");
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnBack.setBounds(27, 446, 359, 41);
+		btnBack.setBounds(35, 476, 390, 44);
 		frame.getContentPane().add(btnBack);
 		
 		btnNext = new JButton("Next");
 		btnNext.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnNext.setBounds(396, 446, 359, 41);
+		btnNext.setBounds(435, 476, 390, 44);
 		frame.getContentPane().add(btnNext);
 		
 		txtCast = new JTextPane();
 		txtCast.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtCast.setEditable(false);
-		txtCast.setBounds(43, 329, 343, 92);
+		txtCast.setBounds(43, 352, 375, 99);
 		frame.getContentPane().add(txtCast);
 		
 		txtDescription = new JTextPane();
 		txtDescription.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtDescription.setBounds(396, 329, 359, 92);
+		txtDescription.setBounds(439, 352, 375, 99);
 		frame.getContentPane().add(txtDescription);
 		
-		JLabel lblCast = new JLabel("Cast");
+		lblCast = new JLabel("Cast");
 		lblCast.setForeground(Color.BLACK);
 		lblCast.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblCast.setBounds(181, 288, 46, 35);
+		lblCast.setBounds(197, 312, 46, 35);
 		frame.getContentPane().add(lblCast);
+		
+		txtListed = new JTextPane();
+		txtListed.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtListed.setEditable(false);
+		txtListed.setBounds(43, 241, 382, 71);
+		frame.getContentPane().add(txtListed);
 		
 		verShows(index);
 	}
@@ -175,10 +183,10 @@ public class FilmsView {
 		lblDateAdd.setText(shows.get(index).getDate());
 		lblYear.setText(shows.get(index).getYear());
 		lblRating.setText(shows.get(index).getRating());
-		lblDuration.setText(shows.get(index).getDuration());
-		lblListed.setText(shows.get(index).getListed());
+		lblListed.setText("Listed");
 		txtCast.setText(shows.get(index).getCast());
 		txtDescription.setText(shows.get(index).getDescription());
+		txtListed.setText(shows.get(index).getListed());
 		
 		}
 	}

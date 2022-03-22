@@ -82,7 +82,7 @@ public class FilmsView {
 		frame.getContentPane().add(lblDirector);
 		
 		lblCountry = new JLabel("");
-		lblCountry.setBounds(45, 82, 731, 55);
+		lblCountry.setBounds(45, 82, 626, 55);
 		lblCountry.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblCountry);
 		
@@ -107,7 +107,7 @@ public class FilmsView {
 		frame.getContentPane().add(lblDuration);
 		
 		lblListed = new JLabel("");
-		lblListed.setBounds(197, 197, 76, 35);
+		lblListed.setBounds(197, 196, 76, 35);
 		lblListed.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblListed);
 		

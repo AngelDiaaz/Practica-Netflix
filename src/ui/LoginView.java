@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,6 +28,7 @@ public class LoginView {
 		private JTextField tfUsuario;
 		private JLabel lblUsuario;
 		private JLabel lblPassword;
+		private JLabel lblNewLabel;
 		private JButton btnEntrar;
 		private JPasswordField pfPassword;
 		private JButton btnRegistro;
@@ -105,7 +109,7 @@ public class LoginView {
 			btnSalir.setBounds(35, 191, 107, 29);
 			frmLogin.getContentPane().add(btnSalir);
 			
-			JLabel lblNewLabel = new JLabel("Login Netflix");
+			lblNewLabel = new JLabel("Login Netflix");
 			lblNewLabel.setForeground(Color.WHITE);
 			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 30));
 			lblNewLabel.setBounds(113, 11, 207, 45);
@@ -146,12 +150,29 @@ public class LoginView {
 		private void comprobarLogin() {
 			String usuario = tfUsuario.getText();
 			String password = new String(pfPassword.getPassword());
-			boolean loginCorrecto = usuarioDAO.login(new Usuario(usuario,password));
+			boolean loginCorrecto = usuarioDAO.login(new Usuario(usuario,hashPasswd(hashPasswd(password,""), "")));
 			if (loginCorrecto) {
 				frmLogin.setVisible(false);
 				new FilmsView();
 			} else {
 				JOptionPane.showMessageDialog(btnEntrar, "Login incorrecto");
 			}
+		}
+		
+		private String hashPasswd(String passwordToHash, String salt){
+		    String generatedPassword = null;
+		    try {
+		        MessageDigest md = MessageDigest.getInstance("SHA-512");
+		        md.update(salt.getBytes(StandardCharsets.UTF_8));
+		        byte[] bytes = md.digest(passwordToHash.getBytes(StandardCharsets.UTF_8));
+		        StringBuilder sb = new StringBuilder();
+		        for(int i=0; i< bytes.length ;i++){
+		            sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+		        }
+		        generatedPassword = sb.toString();
+		    } catch (NoSuchAlgorithmException e) {
+		        e.printStackTrace();
+		    }
+		    return generatedPassword;
 		}
 }

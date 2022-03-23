@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -164,8 +167,10 @@ public class RegisterView {
 			String repetir = new String (pfPasswordRepetir.getPassword());
 			
 			//Cuando las constrañas coincidan y no haya ningun campo vacio
-			if(passwd.equals(repetir) && !textUsuario.getText().equals("") && !passwd.equals("") && !repetir.equals("")) { 			
-				boolean registrar = usuarioDAO.registrar(new Usuario(textUsuario.getText(), passwd));
+			if(passwd.equals(repetir) && !textUsuario.getText().equals("") && !passwd.equals("") && !repetir.equals("")) { 
+				
+				//Realizo el hash password dos veces para ser mas seguro la contraseña
+				boolean registrar = usuarioDAO.registrar(new Usuario(textUsuario.getText(), hashPasswd(hashPasswd(passwd, ""), "")));
 				frmRegistro.dispose();
 				if(registrar == true) { //Si el usuario se registra correctamente
 					new LoginView();
@@ -182,6 +187,23 @@ public class RegisterView {
 			} else if (repetir.equals("")) {
 				JOptionPane.showMessageDialog(btnRegistro, "Campo repetir contraseña sin rellenar, rellenelo por favor");
 			}
+		}
+		
+		private String hashPasswd(String passwordToHash, String salt){
+		    String generatedPassword = null;
+		    try {
+		        MessageDigest md = MessageDigest.getInstance("SHA-512");
+		        md.update(salt.getBytes(StandardCharsets.UTF_8));
+		        byte[] bytes = md.digest(passwordToHash.getBytes(StandardCharsets.UTF_8));
+		        StringBuilder sb = new StringBuilder();
+		        for(int i=0; i< bytes.length ;i++){
+		            sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+		        }
+		        generatedPassword = sb.toString();
+		    } catch (NoSuchAlgorithmException e) {
+		        e.printStackTrace();
+		    }
+		    return generatedPassword;
 		}
 
 }

@@ -57,7 +57,7 @@ public class LoginView {
 		}
 		
 		/**
-		 * Componentes del view
+		 * Componentes de la view
 		 */
 
 		private void configureUIComponents() {

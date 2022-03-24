@@ -52,8 +52,8 @@ public class UsuarioDAO extends AbstractDAO{
 
 	public boolean registrar(Usuario usuario) {
 
-		final String INSERT = "INSERT INTO usuarios (usuario,password)" + " VALUES ('" + usuario.getUsuario() + "','"
-				+ usuario.getPassword() + "');";
+		final String INSERT = "INSERT INTO usuarios (usuario,password, email)" + " VALUES ('" + usuario.getUsuario() + "','"
+				+ usuario.getPassword() + "','" + usuario.getEmail() +"');";
 		try {
 			stmt.executeUpdate(INSERT);
 			return true;

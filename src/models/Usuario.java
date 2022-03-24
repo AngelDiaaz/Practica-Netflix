@@ -5,8 +5,16 @@ public class Usuario {
 	//Propiedades
 	protected String usuario;
 	protected String password;
+	protected String email;
 	
 	//Constructor
+	public Usuario(String usuario, String password, String email) {
+		super();
+		this.usuario = usuario;
+		this.password = password;
+		this.email = email;
+	}
+	
 	public Usuario(String usuario, String password) {
 		super();
 		this.usuario = usuario;
@@ -27,12 +35,17 @@ public class Usuario {
 		this.password = password;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	@Override
 	public String toString() {
-		return "Usuario [usuario=" + usuario + ", password=" + password + "]";
+		return "Usuario [usuario=" + usuario + ", password=" + password + ", email=" + email + "]";
 	}
-	
-	
-	
-	
+
 }

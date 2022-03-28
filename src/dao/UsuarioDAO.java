@@ -2,6 +2,7 @@ package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -24,6 +25,29 @@ public class UsuarioDAO extends AbstractDAO{
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Almacena todos los usuarios de la base de datos en un array list
+	 * @return Array list con todos los usuarios de la base de datos
+	 */
+	
+	public ArrayList<Usuario> getAll(){
+		final String QUERY = "SELECT usuario, password FROM usuarios";
+		var usuarios = new ArrayList<Usuario>();
+		try {
+			ResultSet rs = stmt.executeQuery(QUERY);
+			while (rs.next()) {
+				var usuario = rs.getString("usuario");
+				var password = rs.getString("password");
+
+				Usuario u = new Usuario(usuario, password);
+				usuarios.add(u);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return usuarios;
 	}
 	
 	/**

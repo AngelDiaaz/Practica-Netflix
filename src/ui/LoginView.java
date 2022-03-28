@@ -87,9 +87,8 @@ public class LoginView {
 
 			btnEntrar = new JButton("Entrar");
 			btnEntrar.setBackground(new Color(102, 204, 0));
-
 			btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-			btnEntrar.setBounds(329, 178, 123, 23);
+			btnEntrar.setBounds(321, 178, 131, 23);
 			frmLogin.getContentPane().add(btnEntrar);
 
 			pfPassword = new JPasswordField();
@@ -100,7 +99,7 @@ public class LoginView {
 			btnRegistro = new JButton("Registrarse");
 			btnRegistro.setBackground(new Color(255, 204, 51));
 			btnRegistro.setFont(new Font("Tahoma", Font.PLAIN, 12));
-			btnRegistro.setBounds(196, 178, 123, 23);
+			btnRegistro.setBounds(180, 178, 131, 23);
 			frmLogin.getContentPane().add(btnRegistro);
 			
 			lblNewLabel = new JLabel("Login Netflix");
@@ -112,7 +111,7 @@ public class LoginView {
 			btnForgetPasswd = new JButton("Forget Password");
 			btnForgetPasswd.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			btnForgetPasswd.setBackground(new Color(102, 153, 255));
-			btnForgetPasswd.setBounds(20, 178, 144, 23);
+			btnForgetPasswd.setBounds(27, 178, 131, 23);
 			frmLogin.getContentPane().add(btnForgetPasswd);
 		}
 		
@@ -142,6 +141,8 @@ public class LoginView {
 			});
 			btnForgetPasswd.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					frmLogin.setVisible(false);
+					new ForgotView(frmLogin);
 				}
 			});
 		}

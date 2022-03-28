@@ -278,6 +278,7 @@ public class RegisterView {
 //			     System.out.println("Done");
 
 		} catch (MessagingException e) {
+			JOptionPane.showMessageDialog(btnRegistro, "Correo eléctronico no válido, pruebe a insertarlo otra vez");
 			e.printStackTrace();
 		}
 	}

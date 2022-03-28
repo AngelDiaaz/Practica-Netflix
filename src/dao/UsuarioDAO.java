@@ -88,5 +88,18 @@ public class UsuarioDAO extends AbstractDAO{
 			return false;
 		}
 	}
+	
+	public boolean updatePassword(String passwd, Usuario usuario) {
+		final String UPDATE = "UPDATE usuarios SET password = '" + passwd + "' WHERE usuario = '" + usuario.getUsuario() + "');";
+		try {
+			stmt.executeUpdate(UPDATE);
+			return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			JOptionPane.showMessageDialog(null,
+					"El usuario " + usuario.getUsuario() + " ");
+			return false;
+		}
+	}
 
 }

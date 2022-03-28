@@ -64,51 +64,51 @@ public class ForgotView {
 		lblForgot = new JLabel("Forgot Password");
 		lblForgot.setForeground(Color.WHITE);
 		lblForgot.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 28));
-		lblForgot.setBounds(152, 11, 260, 53);
+		lblForgot.setBounds(137, 11, 260, 53);
 		frmForgot.getContentPane().add(lblForgot);
 		
 		lblEmail = new JLabel("Correo Electr\u00F3nico");
 		lblEmail.setFont(new Font("Times New Roman", Font.BOLD, 17));
 		lblEmail.setForeground(Color.WHITE);
-		lblEmail.setBounds(81, 133, 146, 26);
+		lblEmail.setBounds(67, 133, 146, 26);
 		frmForgot.getContentPane().add(lblEmail);
 		
-		lblInfo = new JLabel("Rellene todos los campos para enviar el c\u00F3digo de autorizaci\u00F3n para cambiar la contrase\u00F1a");
-		lblInfo.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblInfo = new JLabel("Rellene todos los campos para cambiar la contrase\u00F1a");
+		lblInfo.setFont(new Font("Tahoma", Font.BOLD, 13));
 		lblInfo.setForeground(Color.WHITE);
-		lblInfo.setBounds(20, 75, 515, 36);
+		lblInfo.setBounds(81, 75, 362, 36);
 		frmForgot.getContentPane().add(lblInfo);
 		
 		txtEmail = new JTextField();
 		txtEmail.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		txtEmail.setBounds(237, 132, 206, 28);
+		txtEmail.setBounds(223, 132, 206, 28);
 		frmForgot.getContentPane().add(txtEmail);
 		txtEmail.setColumns(10);
 		
 		lblUsuario = new JLabel("Usuario");
 		lblUsuario.setForeground(Color.WHITE);
 		lblUsuario.setFont(new Font("Times New Roman", Font.BOLD, 17));
-		lblUsuario.setBounds(168, 170, 59, 26);
+		lblUsuario.setBounds(154, 172, 59, 26);
 		frmForgot.getContentPane().add(lblUsuario);
 		
 		txtUsuario = new JTextField();
 		txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		txtUsuario.setColumns(10);
-		txtUsuario.setBounds(237, 171, 206, 28);
+		txtUsuario.setBounds(223, 171, 206, 28);
 		frmForgot.getContentPane().add(txtUsuario);
 		
 		btnAtras = new JButton("Volver");
 		btnAtras.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnAtras.setBackground(new Color(255, 204, 51));
-		btnAtras.setBounds(52, 239, 175, 26);
+		btnAtras.setBounds(29, 239, 175, 26);
 		frmForgot.getContentPane().add(btnAtras);
 		
 		btnSiguiente = new JButton("Continuar");
 		btnSiguiente.setBackground(new Color(102, 204, 0));
 		btnSiguiente.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnSiguiente.setBounds(314, 240, 175, 25);
+		btnSiguiente.setBounds(287, 240, 175, 25);
 		frmForgot.getContentPane().add(btnSiguiente);
-		frmForgot.setBounds(100, 100, 551, 332);
+		frmForgot.setBounds(100, 100, 515, 320);
 		frmForgot.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	

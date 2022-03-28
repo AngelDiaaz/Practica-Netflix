@@ -32,8 +32,8 @@ public class LoginView {
 		private JButton btnEntrar;
 		private JPasswordField pfPassword;
 		private JButton btnRegistro;
-		private JButton btnSalir;
 		private UsuarioDAO usuarioDAO;
+		private JButton btnForgetPasswd;
 
 		/**
 		 * Create the application.
@@ -62,7 +62,7 @@ public class LoginView {
 
 		private void configureUIComponents() {
 			frmLogin.setTitle("Login");
-			frmLogin.setBounds(100, 100, 450, 278);
+			frmLogin.setBounds(100, 100, 484, 259);
 			frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frmLogin.getContentPane().setLayout(null);
 
@@ -75,7 +75,7 @@ public class LoginView {
 
 			tfUsuario = new JTextField();
 			tfUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			tfUsuario.setBounds(170, 79, 150, 30);
+			tfUsuario.setBounds(170, 79, 207, 30);
 			frmLogin.getContentPane().add(tfUsuario);
 			tfUsuario.setColumns(10);
 
@@ -89,31 +89,31 @@ public class LoginView {
 			btnEntrar.setBackground(new Color(102, 204, 0));
 
 			btnEntrar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-			btnEntrar.setBounds(298, 191, 107, 29);
+			btnEntrar.setBounds(329, 178, 123, 23);
 			frmLogin.getContentPane().add(btnEntrar);
 
 			pfPassword = new JPasswordField();
 			pfPassword.setFont(new Font("Times New Roman", Font.PLAIN, 15));
-			pfPassword.setBounds(170, 120, 150, 29);
+			pfPassword.setBounds(170, 120, 207, 29);
 			frmLogin.getContentPane().add(pfPassword);
 			
 			btnRegistro = new JButton("Registrarse");
 			btnRegistro.setBackground(new Color(255, 204, 51));
 			btnRegistro.setFont(new Font("Tahoma", Font.PLAIN, 12));
-			btnRegistro.setBounds(170, 191, 107, 29);
+			btnRegistro.setBounds(196, 178, 123, 23);
 			frmLogin.getContentPane().add(btnRegistro);
-			
-			btnSalir = new JButton("Salir");
-			btnSalir.setBackground(new Color(255, 102, 102));
-			btnSalir.setFont(new Font("Tahoma", Font.PLAIN, 12));
-			btnSalir.setBounds(35, 191, 107, 29);
-			frmLogin.getContentPane().add(btnSalir);
 			
 			lblNewLabel = new JLabel("Login Netflix");
 			lblNewLabel.setForeground(Color.WHITE);
 			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 30));
 			lblNewLabel.setBounds(113, 11, 207, 45);
 			frmLogin.getContentPane().add(lblNewLabel);
+			
+			btnForgetPasswd = new JButton("Forget Password");
+			btnForgetPasswd.setFont(new Font("Tahoma", Font.PLAIN, 12));
+			btnForgetPasswd.setBackground(new Color(102, 153, 255));
+			btnForgetPasswd.setBounds(20, 178, 144, 23);
+			frmLogin.getContentPane().add(btnForgetPasswd);
 		}
 		
 		/**
@@ -140,9 +140,8 @@ public class LoginView {
 					new RegisterView(frmLogin); // Te muestra la pestaña de registro
 				}
 			});
-			btnSalir.addActionListener(new ActionListener() {
+			btnForgetPasswd.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					System.exit(0);
 				}
 			});
 		}

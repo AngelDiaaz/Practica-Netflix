@@ -198,6 +198,7 @@ public class RegisterView {
 				// Realizo el hash password dos veces para ser mas segura la contraseña
 				boolean registrar = usuarioDAO.registrar(new Usuario(textUsuario.getText(),
 						hashPasswd(hashPasswd(passwd, ""), ""), textEmail.getText()));
+				JOptionPane.showMessageDialog(null, "Usuario " + textUsuario.getText() + " creado");
 				frmRegistro.dispose();
 				if (registrar == true) { // Si el usuario se registra correctamente
 					new LoginView();

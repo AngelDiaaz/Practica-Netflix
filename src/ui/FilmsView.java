@@ -34,8 +34,10 @@ public class FilmsView {
 	private JLabel lblCast;
 	private ShowDAO showDAO;
 	private ArrayList<Show> shows;
+	private ArrayList<String> favs;
 	private JTextPane txtCast;
 	private JTextPane txtDescription;
+	private JButton btnFavorito;
 	private int index = 0;
 	
 
@@ -45,6 +47,7 @@ public class FilmsView {
 	public FilmsView() {
 		this.showDAO = new ShowDAO();
 		this.shows = showDAO.getAll();
+		this.favs = new ArrayList<String>();
 		initialize();
 		this.frame.setVisible(true);
 
@@ -67,7 +70,7 @@ public class FilmsView {
 		
 		lblTittle = new JLabel("");
 		lblTittle.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTittle.setBounds(35, 0, 790, 71);
+		lblTittle.setBounds(23, 0, 798, 71);
 		lblTittle.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblTittle);
 		
@@ -77,12 +80,12 @@ public class FilmsView {
 		frame.getContentPane().add(lblType);
 		
 		lblDirector = new JLabel("");
-		lblDirector.setBounds(43, 130, 461, 55);
+		lblDirector.setBounds(35, 141, 481, 55);
 		lblDirector.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblDirector);
 		
 		lblCountry = new JLabel("");
-		lblCountry.setBounds(45, 82, 626, 55);
+		lblCountry.setBounds(45, 80, 626, 55);
 		lblCountry.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblCountry);
 		
@@ -106,7 +109,8 @@ public class FilmsView {
 		lblDuration.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblDuration);
 		
-		lblListed = new JLabel("");
+		lblListed = new JLabel("Listed");
+		lblListed.setForeground(Color.BLACK);
 		lblListed.setBounds(197, 196, 76, 35);
 		lblListed.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblListed);
@@ -134,6 +138,7 @@ public class FilmsView {
 		frame.getContentPane().add(txtCast);
 		
 		txtDescription = new JTextPane();
+		txtDescription.setBackground(Color.WHITE);
 		txtDescription.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtDescription.setBounds(439, 352, 375, 99);
 		frame.getContentPane().add(txtDescription);
@@ -149,6 +154,12 @@ public class FilmsView {
 		txtListed.setEditable(false);
 		txtListed.setBounds(43, 241, 382, 71);
 		frame.getContentPane().add(txtListed);
+		
+		btnFavorito = new JButton("FAV");
+		btnFavorito.setBackground(new Color(255, 255, 102));
+		btnFavorito.setForeground(Color.DARK_GRAY);
+		btnFavorito.setBounds(758, 11, 61, 55);
+		frame.getContentPane().add(btnFavorito);
 		
 		verShows(index);
 	}
@@ -172,6 +183,11 @@ public class FilmsView {
 				verShows(index);
 			}
 		});
+		btnFavorito.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				favs.add(shows.get(index).getId());
+			}
+		});
 	}
 	
 	public void verShows(int index) {
@@ -183,7 +199,6 @@ public class FilmsView {
 		lblDateAdd.setText(shows.get(index).getDate());
 		lblYear.setText(shows.get(index).getYear());
 		lblRating.setText(shows.get(index).getRating());
-		lblListed.setText("Listed");
 		txtCast.setText(shows.get(index).getCast());
 		txtDescription.setText(shows.get(index).getDescription());
 		txtListed.setText(shows.get(index).getListed());

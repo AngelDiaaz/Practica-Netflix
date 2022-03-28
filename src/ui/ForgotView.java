@@ -160,7 +160,10 @@ public class ForgotView {
 			int num = Integer.parseInt(JOptionPane
 					.showInputDialog("Ingrese el número que se le ha enviado al correo para poder registrarse"));
 			if(num == pin) {
-				
+				frmForgot.dispose();
+				new ChangePasswdView();
+			} else {
+				JOptionPane.showMessageDialog(frmForgot, "El pin no coincide con el que te hemos enviado al email");
 			}
 		} else {
 			JOptionPane.showMessageDialog(frmForgot, "Usuario o correo electrónico no válidos, vuelve a introducirlos");

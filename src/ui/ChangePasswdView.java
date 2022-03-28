@@ -1,28 +1,12 @@
 package ui;
 
-import java.awt.EventQueue;
+import java.awt.Color;
 
 import javax.swing.JFrame;
 
 public class ChangePasswdView {
 
-	private JFrame frame;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					ChangePasswdView window = new ChangePasswdView();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	private JFrame frmChange;
 
 	/**
 	 * Create the application.
@@ -35,9 +19,10 @@ public class ChangePasswdView {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmChange = new JFrame();
+		frmChange.getContentPane().setBackground(new Color(153, 204, 204));
+		frmChange.setBounds(100, 100, 450, 300);
+		frmChange.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 }

@@ -6,9 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Properties;
 
 import javax.mail.Message;
@@ -28,6 +25,7 @@ import javax.swing.SwingConstants;
 
 import dao.UsuarioDAO;
 import models.Usuario;
+import utils.HashPasswd;
 
 public class RegisterView {
 
@@ -197,7 +195,7 @@ public class RegisterView {
 			if (pin == num) {
 				// Realizo el hash password dos veces para ser mas segura la contraseña
 				boolean registrar = usuarioDAO.registrar(new Usuario(textUsuario.getText(),
-						hashPasswd(hashPasswd(passwd, ""), ""), textEmail.getText()));
+						HashPasswd.hash(HashPasswd.hash(passwd, ""), ""), textEmail.getText()));
 				JOptionPane.showMessageDialog(null, "Usuario " + textUsuario.getText() + " creado");
 				frmRegistro.dispose();
 				if (registrar == true) { // Si el usuario se registra correctamente
@@ -217,32 +215,9 @@ public class RegisterView {
 			JOptionPane.showMessageDialog(btnRegistro, "Campo contraseña sin rellenar, rellenelo por favor");
 		} else if (repetir.equals("")) {
 			JOptionPane.showMessageDialog(btnRegistro, "Campo repetir contraseña sin rellenar, rellenelo por favor");
+		} else if (textEmail.getText().equals("")) {
+			JOptionPane.showMessageDialog(btnRegistro, "Campo correo electrónico sin rellenar, rellenelo por favor");
 		}
-	}
-
-	/**
-	 * Realiza un hash en el password, para aportar mayor seguridad
-	 * 
-	 * @param passwordToHash Password que queremos realizar el hash
-	 * @param salt
-	 * @return Hash del password
-	 */
-
-	private String hashPasswd(String passwordToHash, String salt) {
-		String generatedPassword = null;
-		try {
-			MessageDigest md = MessageDigest.getInstance("SHA-512");
-			md.update(salt.getBytes(StandardCharsets.UTF_8));
-			byte[] bytes = md.digest(passwordToHash.getBytes(StandardCharsets.UTF_8));
-			StringBuilder sb = new StringBuilder();
-			for (int i = 0; i < bytes.length; i++) {
-				sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-			}
-			generatedPassword = sb.toString();
-		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
-		}
-		return generatedPassword;
 	}
 
 	private void email(String email, int pin) {

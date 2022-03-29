@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 
 import dao.UsuarioDAO;
 import models.Usuario;
+import utils.HashPasswd;
 
 public class ChangePasswdView {
 
@@ -60,12 +61,12 @@ public class ChangePasswdView {
 		frmChange.getContentPane().add(lblChange);
 
 		pfPassword = new JPasswordField();
-		pfPassword.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		pfPassword.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		pfPassword.setBounds(202, 89, 189, 26);
 		frmChange.getContentPane().add(pfPassword);
 
 		pfPasswordRepetir = new JPasswordField();
-		pfPasswordRepetir.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		pfPasswordRepetir.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		pfPasswordRepetir.setBounds(202, 126, 189, 26);
 		frmChange.getContentPane().add(pfPasswordRepetir);
 
@@ -121,10 +122,10 @@ public class ChangePasswdView {
 		String repetir = new String(pfPasswordRepetir.getPassword());
 		if (passwd.equals(repetir) && !passwd.equals("") && !repetir.equals("")) {
 
-			boolean update = usuarioDAO.updatePassword(passwd, usuario);
+			boolean update = usuarioDAO.updatePassword(HashPasswd.hash(HashPasswd.hash(passwd, ""), ""), usuario);
 
 			if (update) {
-				JOptionPane.showMessageDialog(btnGuardar, "La contraseña a sido cambia");
+				JOptionPane.showMessageDialog(btnGuardar, "La contraseña ha sido cambia");
 				frmChange.dispose();
 				new LoginView();
 			} else {

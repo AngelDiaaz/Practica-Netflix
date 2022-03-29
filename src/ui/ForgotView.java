@@ -93,7 +93,7 @@ public class ForgotView {
 		frmForgot.getContentPane().add(lblUsuario);
 		
 		txtUsuario = new JTextField();
-		txtUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		txtUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		txtUsuario.setColumns(10);
 		txtUsuario.setBounds(223, 171, 206, 28);
 		frmForgot.getContentPane().add(txtUsuario);

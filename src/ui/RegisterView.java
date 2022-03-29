@@ -157,7 +157,14 @@ public class RegisterView {
 				registrarse();
 			}
 		});
-
+		btnRegistro.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) { // Al pulsar la tecla enter, te deje acceder
+					registrarse();
+				}
+			}
+		});
 		pfPasswordRepetir.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {

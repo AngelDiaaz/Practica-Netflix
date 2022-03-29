@@ -14,6 +14,8 @@ import dao.ShowDAO;
 import models.Show;
 import javax.swing.SwingConstants;
 import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class FilmsView {
 
@@ -165,22 +167,30 @@ public class FilmsView {
 	}
 	
 	private void configureListeners() {
+		btnBack.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) { // Al pulsar la tecla enter, te haga retroceda la lista para atras
+					back();
+				}
+			}
+		});
+		btnNext.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) { // Al pulsar la tecla enter, te haga avanza la lista
+					next();
+				}
+			}
+		});
 		btnBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				index--;
-				if (index < 0) { //Cuando el index es la primera posicion del array list
-					index = shows.size() - 1;
-				}
-				verShows(index);
+				back();
 			}
 		});
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				index++;
-				if (index == shows.size()) { // Cuando el index es la ultima posicion del array list
-					index = 0;
-				}
-				verShows(index);
+				next();
 			}
 		});
 		btnFavorito.addActionListener(new ActionListener() {
@@ -190,7 +200,23 @@ public class FilmsView {
 		});
 	}
 	
-	public void verShows(int index) {
+	private void back() {
+		index--;
+		if (index < 0) { //Cuando el index es la primera posicion del array list
+			index = shows.size() - 1;
+		}
+		verShows(index);
+	}
+	
+	private void next() {
+		index++;
+		if (index == shows.size()) { // Cuando el index es la ultima posicion del array list
+			index = 0;
+		}
+		verShows(index);
+	}
+	
+	private void verShows(int index) {
 		
 		lblTittle.setText(shows.get(index).getTitle());
 		lblType.setText(shows.get(index).getType());

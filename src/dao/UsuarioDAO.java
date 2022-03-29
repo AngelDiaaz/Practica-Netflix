@@ -33,15 +33,16 @@ public class UsuarioDAO extends AbstractDAO{
 	 */
 	
 	public ArrayList<Usuario> getAll(){
-		final String QUERY = "SELECT usuario, password FROM usuarios";
+		final String QUERY = "SELECT usuario, password, email FROM usuarios";
 		var usuarios = new ArrayList<Usuario>();
 		try {
 			ResultSet rs = stmt.executeQuery(QUERY);
 			while (rs.next()) {
 				var usuario = rs.getString("usuario");
 				var password = rs.getString("password");
+				var email = rs.getString("email");
 
-				Usuario u = new Usuario(usuario, password);
+				Usuario u = new Usuario(usuario, password, email);
 				usuarios.add(u);
 			}
 		} catch (SQLException e) {
@@ -89,8 +90,15 @@ public class UsuarioDAO extends AbstractDAO{
 		}
 	}
 	
+	/**
+	 * Cambia la contraseña del usuario que nosotros queremos
+	 * @param passwd Contraseña nueva que le queremos poner al usuario
+	 * @param usuario Usuario al que le queremos cambiar la contraseña
+	 * @return True si se le ha cambiado la contraseña y false si no
+	 */
+	
 	public boolean updatePassword(String passwd, Usuario usuario) {
-		final String UPDATE = "UPDATE usuarios SET password = '" + passwd + "' WHERE usuario = '" + usuario.getUsuario() + "');";
+		final String UPDATE = "UPDATE usuarios SET password = '" + passwd + "' WHERE usuario = '" + usuario.getUsuario() + "';";
 		try {
 			stmt.executeUpdate(UPDATE);
 			return true;

@@ -37,6 +37,7 @@ public class ForgotView {
 	private JButton btnAtras;
 	private JButton btnSiguiente;
 	private UsuarioDAO usuarioDAO;
+	private Usuario usuario;
 
 	/**
 	 * Create the application.
@@ -80,7 +81,7 @@ public class ForgotView {
 		frmForgot.getContentPane().add(lblInfo);
 		
 		txtEmail = new JTextField();
-		txtEmail.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtEmail.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		txtEmail.setBounds(223, 132, 206, 28);
 		frmForgot.getContentPane().add(txtEmail);
 		txtEmail.setColumns(10);
@@ -92,7 +93,7 @@ public class ForgotView {
 		frmForgot.getContentPane().add(lblUsuario);
 		
 		txtUsuario = new JTextField();
-		txtUsuario.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		txtUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		txtUsuario.setColumns(10);
 		txtUsuario.setBounds(223, 171, 206, 28);
 		frmForgot.getContentPane().add(txtUsuario);
@@ -149,9 +150,10 @@ public class ForgotView {
 		int pin = (int) (Math.random() * 999999) + 100000;
 		boolean correcto = false;
 		
-		for (Usuario usuario : usuarios) {
-			if(usuario.getUsuario().equals(txtUsuario.getText()) && usuario.getEmail().equals(txtEmail.getText())) {
+		for (Usuario usu : usuarios) {
+			if(usu.getUsuario().equals(txtUsuario.getText()) && usu.getEmail().equals(txtEmail.getText())) {
 				correcto = true;
+				this.usuario = usu;
 			}
 		}
 		
@@ -161,7 +163,7 @@ public class ForgotView {
 					.showInputDialog("Ingrese el número que se le ha enviado al correo para poder registrarse"));
 			if(num == pin) {
 				frmForgot.dispose();
-				new ChangePasswdView();
+				new ChangePasswdView(usuario);
 			} else {
 				JOptionPane.showMessageDialog(frmForgot, "El pin no coincide con el que te hemos enviado al email");
 			}

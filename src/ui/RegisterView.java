@@ -6,15 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Properties;
 
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -26,6 +18,7 @@ import javax.swing.SwingConstants;
 import dao.UsuarioDAO;
 import models.Usuario;
 import utils.HashPasswd;
+import utils.SendEmail;
 
 public class RegisterView {
 
@@ -194,7 +187,7 @@ public class RegisterView {
 		// Cuando las constrañas coincidan y no haya ningun campo vacio
 		if (passwd.equals(repetir) && !textUsuario.getText().equals("") && !passwd.equals("") && !repetir.equals("")) {
 
-			email(textEmail.getText(), pin);
+			SendEmail.email(textEmail.getText(), pin);
 
 			int num = Integer.parseInt(JOptionPane
 					.showInputDialog("Ingrese el número que se le ha enviado al correo para poder registrarse"));
@@ -227,41 +220,4 @@ public class RegisterView {
 		}
 	}
 
-	private void email(String email, int pin) {
-		final String username = "prog.pruebas1@gmail.com";
-		final String password = "manolo.bombo";
-
-		Properties prop = new Properties();
-		prop.put("mail.smtp.host", "smtp.gmail.com");
-		prop.put("mail.smtp.port", "587");
-		prop.put("mail.smtp.auth", "true");
-		prop.put("mail.smtp.ssl.trust", "*");
-		prop.put("mail.smtp.starttls.required", "true");
-		prop.put("mail.smtp.ssl.protocols", "TLSv1.2");
-
-		Session session = Session.getInstance(prop, new javax.mail.Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(username, password);
-			}
-		});
-
-		try {
-
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("from@gmail.com")); // Aqui se puede mandar el email a los que queramos
-																	// demas
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-			message.setSubject("Pin de autentificación");
-			message.setText("Hola aqui tiene el codigo de autentificación para poder registrarte,\n\n" + pin + ".");
-			// mailchimp, sendinblue, mailjet Paguinas web para enviar correos con html
-			// 18:37
-			Transport.send(message);
-
-//			     System.out.println("Done");
-
-		} catch (MessagingException e) {
-			JOptionPane.showMessageDialog(btnRegistro, "Correo eléctronico no válido, pruebe a insertarlo otra vez");
-			e.printStackTrace();
-		}
-	}
 }

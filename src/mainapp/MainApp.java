@@ -18,7 +18,6 @@ public class MainApp {
 	private void enviarDatosBD() {
 		String filename = "netflix_titles.csv";
 		Scanner sc = null;
-		//ArrayList<Show> shows = new ArrayList<Show>();
 		boolean isString = false;
 		String trozoString = "";
 		int fila = 0;
@@ -29,7 +28,6 @@ public class MainApp {
 			while (sc.hasNextLine()) {
 			
 				String s = sc.nextLine();
-				// var trozos = s.split(",");
 				// Omite las cadenas internas ""
 				var trozos = s.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
 				for (String trozo : trozos) {

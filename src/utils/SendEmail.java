@@ -40,7 +40,7 @@ public class SendEmail {
 			message.setSubject("Pin de autentificación");
 			message.setText("Hola aqui tiene el codigo de autentificación para poder registrarte,\n\n" + pin + ".");
 			// mailchimp, sendinblue, mailjet Paguinas web para enviar correos con html
-			// 18:37
+			
 			Transport.send(message);
 
 //			     System.out.println("Done");

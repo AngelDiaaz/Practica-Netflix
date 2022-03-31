@@ -8,6 +8,12 @@ import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class DocumentWrite {
+	
+	/**
+	 * Crea un archivo csv y vuelva todos los shows favoritos en el archivo
+	 * @param text Show que queremos volvar en el archivo
+	 * @param separador Separador que usamos para separar los distintos shows
+	 */
 
 	public static void write(String text, String separador) {
 		try {
@@ -15,10 +21,16 @@ public class DocumentWrite {
 
 			FileWriter fw = new FileWriter(fav, true);
 
-			fw.write(text + separador);
-			
-			fw.flush();
-			fw.close();
+			//Comprueba si el show ya esta registrado previamente o no
+			if (comprobarFavoritos(text, separador)) {
+				//Escribe el texto en el archivo
+				fw.write(text + separador);
+
+				fw.flush();
+				fw.close();
+			} else {
+				JOptionPane.showMessageDialog(null, "Show ya registrado en favoritos");
+			}
 
 		} catch (
 
@@ -27,31 +39,38 @@ public class DocumentWrite {
 		}
 	}
 	
-	private static void leerArchivo() {
+	/**
+	 * Compruba si el show ya esta registrado en favoritos o no
+	 * @param text Show que queremos comprobar
+	 * @param separador Separador que hemos usado para separar los shows en el texto
+	 * @return True si no esta en favoritos y false si ya se encuentra registrado
+	 */
+
+	private static boolean comprobarFavoritos(String text, String separador) {
 		String filename = "fav.csv";
 		Scanner sc = null;
 		try {
 			sc = new Scanner(new File(filename), "UTF-8");
-			System.out.println("hola");
 			while (sc.hasNextLine()) {
 				String s = sc.nextLine();
 				// Omite las cadenas internas ""
-				var trozos = s.split(",");
+				var trozos = s.split(separador);
 				for (String trozo : trozos) {
-					System.out.println(trozo);
-					
-					
+					if (text.equals(trozo)) {
+						return false;
+					}
 				}
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		sc.close();
+		return true;
 	}
+}
 
 //	List<List<String>> rows = Arrays.asList(
 //		    Arrays.asList("Jean", "author", "Java"),
 //		    Arrays.asList("David", "editor", "Python"),
 //		    Arrays.asList("Scott", "editor", "Node.js")
 //		);
-}

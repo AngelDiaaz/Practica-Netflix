@@ -38,11 +38,12 @@ public class FilmsView {
 	private JLabel lblCast;
 	private ShowDAO showDAO;
 	private ArrayList<Show> shows;
-	private ArrayList<String> favs;
 	private JTextPane txtCast;
 	private JTextPane txtDescription;
 	private JButton btnFavorito;
 	private int index = 0;
+	private boolean first = true;
+	private String separador = "";
 
 	/**
 	 * Create the application.
@@ -50,7 +51,6 @@ public class FilmsView {
 	public FilmsView() {
 		this.showDAO = new ShowDAO();
 		this.shows = showDAO.getAll();
-		this.favs = new ArrayList<String>();
 		initialize();
 		this.frame.setVisible(true);
 
@@ -180,7 +180,7 @@ public class FilmsView {
 		btnNext.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER) { // Al pulsar la tecla enter, te haga avanza la lista
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) { // Al pulsar la tecla enter, te haga avanzar la lista
 					next();
 				}
 			}
@@ -198,24 +198,25 @@ public class FilmsView {
 		btnFavorito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				int seleccion = JOptionPane.showOptionDialog(null,
-						"¿Cúal separador quieres que se use en el documento?", "Selector de opciones",
-						JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, // null para icono por
-																								// defecto.
-						new Object[] { "Coma", "Punto y coma", "Tabulador" }, "");
-				String separador;
-				if (seleccion == 0) {
-					separador = ",";
-				} else if(seleccion == 1) {
-					separador = ";";
-				} else {
-					separador = "\t";
+				if (first) {
+					int seleccion = JOptionPane.showOptionDialog(null,
+							"¿Cúal separador quieres que se use en el documento?", "Selector de opciones",
+							JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, // null para icono por
+																									// defecto.
+							new Object[] { "Coma", "Punto y coma", "Tabulador" }, "");
+					if (seleccion == 0) {
+						separador = ",";
+					} else if (seleccion == 1) {
+						separador = ";";
+					} else {
+						separador = "\t";
+					}
 				}
 
-//				favs.add(shows.get(index).getId());
 				// Cada vez que se pulsa el boton escribe el id y el titulo del show en un
 				// documento
 				DocumentWrite.write(shows.get(index).getId() + "/" + shows.get(index).getTitle(), separador);
+				first = false;
 			}
 		});
 	}

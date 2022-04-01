@@ -14,8 +14,8 @@ import javax.swing.JOptionPane;
 public class SendEmail {
 	
 	public static void email(String email, int pin) {
-		final String username = "prog.pruebas1@gmail.com";
-		final String password = "manolo.bombo";
+		final String username = CredentialsHelper.email();
+		final String password = CredentialsHelper.passwordEmail();
 
 		Properties prop = new Properties();
 		prop.put("mail.smtp.host", "smtp.gmail.com");

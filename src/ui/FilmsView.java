@@ -83,7 +83,7 @@ public class FilmsView {
 		frame.getContentPane().add(lblType);
 
 		lblDirector = new JLabel("");
-		lblDirector.setBounds(35, 141, 481, 55);
+		lblDirector.setBounds(45, 141, 481, 55);
 		lblDirector.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblDirector);
 

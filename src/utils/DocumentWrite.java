@@ -17,7 +17,7 @@ public class DocumentWrite {
 
 	public static void write(String text, String separador) {
 		try {
-			File fav = new File("fav.csv");
+			File fav = new File("asserts/fav.csv");
 
 			FileWriter fw = new FileWriter(fav, true);
 
@@ -47,7 +47,7 @@ public class DocumentWrite {
 	 */
 
 	private static boolean comprobarFavoritos(String text, String separador) {
-		String filename = "fav.csv";
+		String filename = "asserts/fav.csv";
 		Scanner sc = null;
 		try {
 			sc = new Scanner(new File(filename), "UTF-8");

@@ -10,7 +10,7 @@ import com.google.gson.JsonParser;
 
 public class CredentialsHelper {
 
-	private final static String appSettingsFile = "appsettings.json";
+	private final static String appSettingsFile = "asserts/appsettings.json";
 
 	public static String userDB() {
 		return readGson("userDB");
@@ -18,6 +18,10 @@ public class CredentialsHelper {
 	
 	public static String passwordDB() {
 		return readGson("passwordDB");
+	}
+	
+	public static String urlDB() {
+		return readGson("urlDB");
 	}
 	
 	public static String email() {
@@ -35,7 +39,7 @@ public class CredentialsHelper {
 			list = Files.readAllLines(new File(appSettingsFile).toPath());
 			String appsettingsContent = "";
 			for (var l : list) {
-				appsettingsContent += 1;
+				appsettingsContent += l;
 			}
 			JsonObject jsonObject = JsonParser.parseString(appsettingsContent).getAsJsonObject();
 			return jsonObject.get(string).getAsString();
@@ -43,6 +47,5 @@ public class CredentialsHelper {
 			e.printStackTrace();
 		}
 		return null;
-
 	}
 }

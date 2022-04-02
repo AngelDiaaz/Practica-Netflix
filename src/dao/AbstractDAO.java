@@ -8,9 +8,9 @@ import java.sql.Statement;
 import utils.CredentialsHelper;
 
 public abstract class AbstractDAO {
-	private final String DB_URL = "jdbc:mysql://localhost/netflix";
-	private final String USER = "user_netflix";
-	private final String PASS = "P@ssw0rd";
+	private final String DB_URL = CredentialsHelper.urlDB();
+	private final String USER = CredentialsHelper.userDB();
+	private final String PASS = CredentialsHelper.passwordDB();
 	protected Connection conn;
 	protected Statement stmt;
 	

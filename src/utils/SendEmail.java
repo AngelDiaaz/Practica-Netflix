@@ -43,8 +43,6 @@ public class SendEmail {
 			
 			Transport.send(message);
 
-//			     System.out.println("Done");
-
 		} catch (MessagingException e) {
 			JOptionPane.showMessageDialog(null, "Correo eléctronico no válido, pruebe a insertarlo otra vez");
 			e.printStackTrace();

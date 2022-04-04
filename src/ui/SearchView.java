@@ -19,7 +19,7 @@ import dao.ShowDAO;
 import models.Show;
 import utils.DocumentWrite;
 
-public class FilmsView {
+public class SearchView {
 
 	private JFrame frame;
 	private JLabel lblTittle;
@@ -34,7 +34,6 @@ public class FilmsView {
 	private JLabel lblDescription;
 	private JButton btnBack;
 	private JButton btnNext;
-	private JButton btnBuscador;
 	private JTextPane txtListed;
 	private JLabel lblCast;
 	private ShowDAO showDAO;
@@ -42,16 +41,21 @@ public class FilmsView {
 	private JTextPane txtCast;
 	private JTextPane txtDescription;
 	private JButton btnFavorito;
+	private JFrame parent;
 	private int index = 0;
-	private boolean first = true;
-	private String separador = "";
+	private boolean first;
+	private String separador;
+	private JButton btnX;
 
 	/**
 	 * Create the application.
 	 */
-	public FilmsView() {
+	public SearchView(JFrame parent, String consultar, String text, boolean first, String separador) {
+		this.parent = parent;
+		this.first = first;
+		this.separador = separador;
 		this.showDAO = new ShowDAO();
-		this.shows = showDAO.getAll();
+		this.shows = showDAO.search(consultar, text);
 		initialize();
 		this.frame.setVisible(true);
 
@@ -74,7 +78,7 @@ public class FilmsView {
 
 		lblTittle = new JLabel("");
 		lblTittle.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTittle.setBounds(55, 0, 711, 71);
+		lblTittle.setBounds(86, 0, 711, 71);
 		lblTittle.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblTittle);
 
@@ -89,7 +93,7 @@ public class FilmsView {
 		frame.getContentPane().add(lblDirector);
 
 		lblCountry = new JLabel("");
-		lblCountry.setBounds(46, 82, 626, 55);
+		lblCountry.setBounds(45, 80, 626, 55);
 		lblCountry.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frame.getContentPane().add(lblCountry);
 
@@ -166,41 +170,22 @@ public class FilmsView {
 		btnFavorito.setForeground(Color.DARK_GRAY);
 		btnFavorito.setBounds(35, 10, 61, 55);
 		frame.getContentPane().add(btnFavorito);
-
-		btnBuscador = new JButton("Buscador");
-		btnBuscador.setBackground(new Color(153, 255, 153));
-		btnBuscador.setForeground(new Color(0, 0, 0));
-		btnBuscador.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnBuscador.setBounds(728, 9, 91, 55);
-		frame.getContentPane().add(btnBuscador);
+		
+		btnX = new JButton("X");
+		btnX.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnX.setForeground(new Color(255, 255, 255));
+		btnX.setBackground(new Color(255, 0, 51));
+		btnX.setBounds(758, 10, 61, 55);
+		frame.getContentPane().add(btnX);
 
 		verShows(index);
 	}
 
 	private void configureListeners() {
-		btnBuscador.addActionListener(new ActionListener() {
+		btnX.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String buscar;
-				
-				int select = JOptionPane.showOptionDialog(null,
-						"¿Por cúal campo quieres buscar los shows?", "Selector de opciones",
-						JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, // null para icono por
-																								// defecto.
-						new Object[] { "Nombre", "País", "Director", "Año" }, "");
-				if (select == 0) {
-					buscar = "tittle";
-				} else if (select == 1) {
-					buscar = "country";
-				} else if (select == 2) {
-					buscar = "director";
-				} else {
-					buscar = "release_year";
-				}
-
-				String busqueda = JOptionPane.showInputDialog(frame, "Buscador de shows", JOptionPane.QUESTION_MESSAGE);
-
-				new SearchView(frame, buscar, busqueda, first, separador);
-				frame.setVisible(false);
+				frame.dispose();
+				parent.setVisible(true);
 			}
 		});
 		btnBack.addKeyListener(new KeyAdapter() {
@@ -286,4 +271,5 @@ public class FilmsView {
 		txtListed.setText(shows.get(index).getListed());
 
 	}
+
 }

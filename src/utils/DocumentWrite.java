@@ -17,7 +17,7 @@ public class DocumentWrite {
 
 	public static void write(String text, String separador) {
 		try {
-			File fav = new File("asserts/fav.csv");
+			File fav = new File("assets/fav.csv");
 
 			FileWriter fw = new FileWriter(fav, true);
 
@@ -47,7 +47,7 @@ public class DocumentWrite {
 	 */
 
 	private static boolean comprobarFavoritos(String text, String separador) {
-		String filename = "asserts/fav.csv";
+		String filename = "assets/fav.csv";
 		Scanner sc = null;
 		try {
 			sc = new Scanner(new File(filename), "UTF-8");
@@ -69,8 +69,3 @@ public class DocumentWrite {
 	}
 }
 
-//	List<List<String>> rows = Arrays.asList(
-//		    Arrays.asList("Jean", "author", "Java"),
-//		    Arrays.asList("David", "editor", "Python"),
-//		    Arrays.asList("Scott", "editor", "Node.js")
-//		);

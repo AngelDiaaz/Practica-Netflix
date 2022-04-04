@@ -10,7 +10,7 @@ import com.google.gson.JsonParser;
 
 public class CredentialsHelper {
 
-	private final static String appSettingsFile = "asserts/appsettings.json";
+	private final static String appSettingsFile = "assets/appsettings.json";
 
 	public static String userDB() {
 		return readGson("userDB");

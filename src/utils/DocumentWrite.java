@@ -3,18 +3,21 @@ package utils;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
 
+import dao.ShowDAO;
 import models.Show;
 
 public class DocumentWrite {
-	
+
 	/**
 	 * Crea un archivo csv y vuelva todos los shows favoritos en el archivo
-	 * @param text Show que queremos volvar en el archivo
+	 * 
+	 * @param text      Show que queremos volvar en el archivo
 	 * @param separador Separador que usamos para separar los distintos shows
 	 */
 
@@ -24,9 +27,9 @@ public class DocumentWrite {
 
 			FileWriter fw = new FileWriter(fav, true);
 
-			//Comprueba si el show ya esta registrado previamente o no
+			// Comprueba si el show ya esta registrado previamente o no
 			if (comprobarFavoritos(text, separador)) {
-				//Escribe el texto en el archivo
+				// Escribe el texto en el archivo
 				fw.write(text + separador);
 
 				fw.flush();
@@ -41,10 +44,11 @@ public class DocumentWrite {
 			JOptionPane.showMessageDialog(null, "No se ha podido incribir adecuadamente en el archivo");
 		}
 	}
-	
+
 	/**
 	 * Compruba si el show ya esta registrado en favoritos o no
-	 * @param text Show que queremos comprobar
+	 * 
+	 * @param text      Show que queremos comprobar
 	 * @param separador Separador que hemos usado para separar los shows en el texto
 	 * @return True si no esta en favoritos y false si ya se encuentra registrado
 	 */
@@ -71,13 +75,30 @@ public class DocumentWrite {
 		return true;
 	}
 	
-	public static ArrayList<Show> read() {
+	/**
+	 * Lee el archivo de favoritos y saca las ids, y almacena todos los shows de favoritos en un array list
+	 * 
+	 * @return Array list con todos los shows que se le han dado a favoritos
+	 */
+
+	public static ArrayList<Show> readFavs() {
 		var shows = new ArrayList<Show>();
-		
-		
-		
+		ShowDAO showDAO = new ShowDAO();
+		Scanner sc = null;
+		File f = new File("assets/fav.csv");
+		try {
+			sc = new Scanner(f, "UTF-8");
+			String s = sc.nextLine();
+			var ids = s.split(",");
+			
+			for (String id : ids) {
+				//Llama a la funcion consulta para sacar el show de la base de datos con esa id
+				shows.add(showDAO.consulta(id));
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		return shows;
-		
 	}
 }
-

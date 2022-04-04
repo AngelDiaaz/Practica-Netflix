@@ -15,7 +15,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
-import dao.ShowDAO;
 import models.Show;
 import utils.DocumentWrite;
 
@@ -36,7 +35,6 @@ public class FavsView {
 	private JButton btnNext;
 	private JTextPane txtListed;
 	private JLabel lblCast;
-	private ShowDAO showDAO;
 	private ArrayList<Show> shows;
 	private JTextPane txtCast;
 	private JTextPane txtDescription;
@@ -52,7 +50,7 @@ public class FavsView {
 	 */
 	public FavsView(JFrame parent) {
 		this.parent = parent;
-		this.showDAO = new ShowDAO();
+		this.shows = DocumentWrite.readFavs();
 		initialize();
 		this.frmNetflixBsqueda.setVisible(true);
 

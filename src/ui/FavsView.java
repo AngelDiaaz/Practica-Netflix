@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
@@ -41,15 +40,15 @@ public class FavsView {
 	private JButton btnFavorito;
 	private JFrame parent;
 	private int index = 0;
-	private boolean first;
 	private String separador;
 	private JButton btnX;
 
 	/**
 	 * Create the application.
 	 */
-	public FavsView(JFrame parent) {
+	public FavsView(JFrame parent, String separador) {
 		this.parent = parent;
+		this.separador = separador;
 		this.shows = DocumentWrite.readFavs();
 		initialize();
 		this.frmNetflixBsqueda.setVisible(true);
@@ -161,10 +160,10 @@ public class FavsView {
 		txtListed.setBounds(43, 241, 382, 71);
 		frmNetflixBsqueda.getContentPane().add(txtListed);
 
-		btnFavorito = new JButton("QUITAR FAV");
+		btnFavorito = new JButton("QUITAR");
 		btnFavorito.setBackground(new Color(255, 255, 102));
 		btnFavorito.setForeground(Color.DARK_GRAY);
-		btnFavorito.setBounds(35, 10, 93, 55);
+		btnFavorito.setBounds(35, 10, 83, 55);
 		frmNetflixBsqueda.getContentPane().add(btnFavorito);
 		
 		btnX = new JButton("X");
@@ -213,26 +212,7 @@ public class FavsView {
 		});
 		btnFavorito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				if (first) {
-					int seleccion = JOptionPane.showOptionDialog(null,
-							"¿Cúal separador quieres que se use en el documento?", "Selector de opciones",
-							JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, // null para icono por
-																									// defecto.
-							new Object[] { "Coma", "Punto y coma", "Tabulador" }, "");
-					if (seleccion == 0) {
-						separador = ",";
-					} else if (seleccion == 1) {
-						separador = ";";
-					} else {
-						separador = "\t";
-					}
-				}
-
-				// Cada vez que se pulsa el boton escribe el id del show en un
-				// documento
-				DocumentWrite.write(shows.get(index).getId(), separador);
-				first = false;
+				DocumentWrite.eliminarFavoritos(shows.get(index).getId(), separador);
 			}
 		});
 	}

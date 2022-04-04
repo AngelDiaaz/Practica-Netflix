@@ -236,7 +236,7 @@ public class SearchView {
 
 				// Cada vez que se pulsa el boton escribe el id del show en un
 				// documento
-				DocumentWrite.write(shows.get(index).getId(), separador);
+				DocumentWrite.write(shows.get(index).getId(), separador, true, false);
 				first = false;
 			}
 		});

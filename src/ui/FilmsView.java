@@ -217,7 +217,7 @@ public class FilmsView {
 		});
 		btnMyFavs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new FavsView(frmNetflix);
+				new FavsView(frmNetflix, separador);
 				frmNetflix.setVisible(false);
 			}
 		});
@@ -268,7 +268,7 @@ public class FilmsView {
 
 				// Cada vez que se pulsa el boton escribe el id del show en un
 				// documento
-				DocumentWrite.write(shows.get(index).getId(), separador);
+				DocumentWrite.write(shows.get(index).getId(), separador, true, false);
 				first = false;
 			}
 		});

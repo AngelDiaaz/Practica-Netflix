@@ -17,18 +17,19 @@ public class DocumentWrite {
 	/**
 	 * Crea un archivo csv y vuelva todos los shows favoritos en el archivo
 	 * 
-	 * @param text      Show que queremos volvar en el archivo
+	 * @param text Show que queremos volvar en el archivo
 	 * @param separador Separador que usamos para separar los distintos shows
+	 * @param sobrescribir True si queremos agregar mas al id y false si queremos sobrescribir el documento con el texto que le pasamos
 	 */
 
-	public static void write(String text, String separador) {
+	public static void write(String text, String separador, boolean sobrescribir, boolean comprobar) {
 		try {
 			File fav = new File("assets/fav.csv");
 
-			FileWriter fw = new FileWriter(fav, true);
+			FileWriter fw = new FileWriter(fav, sobrescribir);
 
 			// Comprueba si el show ya esta registrado previamente o no
-			if (comprobarFavoritos(text, separador)) {
+			if (comprobarFavoritos(text, separador) || comprobar) {
 				// Escribe el texto en el archivo
 				fw.write(text + separador);
 
@@ -43,6 +44,36 @@ public class DocumentWrite {
 		Exception e) {
 			JOptionPane.showMessageDialog(null, "No se ha podido incribir adecuadamente en el archivo");
 		}
+	}
+	
+	/**
+	 * Elimina el id del archivo csv que nosotros queremos
+	 * 
+	 * @param id Id que queremos eliminar del archivo csv
+	 * @param separador Caracter con el que esta separado las ids en el archivo csv
+	 */
+	
+	public static void eliminarFavoritos(String id, String separador) {
+		String filename = "assets/fav.csv";
+		Scanner sc = null;
+		boolean sobrescribir = false;
+		try {
+			sc = new Scanner(new File(filename), "UTF-8");
+			while (sc.hasNextLine()) {
+				String s = sc.nextLine();
+				var trozos = s.split(separador);
+					for (String trozo : trozos) {
+					//Cuando el id coincide no se escribe en el archivo csv
+					if (!id.equals(trozo)) {
+						write(id,separador, sobrescribir, true);
+						sobrescribir = true;
+					}
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		sc.close();
 	}
 
 	/**
@@ -60,7 +91,7 @@ public class DocumentWrite {
 			sc = new Scanner(new File(filename), "UTF-8");
 			while (sc.hasNextLine()) {
 				String s = sc.nextLine();
-				// Omite las cadenas internas ""
+
 				var trozos = s.split(separador);
 				for (String trozo : trozos) {
 					if (text.equals(trozo)) {

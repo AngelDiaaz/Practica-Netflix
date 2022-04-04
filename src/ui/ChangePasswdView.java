@@ -51,6 +51,7 @@ public class ChangePasswdView {
 
 	private void configureUIComponents() {
 		frmChange = new JFrame();
+		frmChange.setTitle("Netflix: Password");
 		frmChange.getContentPane().setBackground(new Color(153, 204, 204));
 		frmChange.getContentPane().setLayout(null);
 

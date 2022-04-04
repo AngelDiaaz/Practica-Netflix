@@ -59,7 +59,7 @@ public class LoginView {
 		 */
 
 		private void configureUIComponents() {
-			frmLogin.setTitle("Login");
+			frmLogin.setTitle("Netflix: Login");
 			frmLogin.setBounds(100, 100, 484, 259);
 			frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			frmLogin.getContentPane().setLayout(null);

@@ -65,7 +65,7 @@ public class RegisterView {
 		frmRegistro = new JFrame();
 		frmRegistro.getContentPane().setBackground(new Color(153, 204, 204));
 		frmRegistro.getContentPane().setForeground(Color.BLACK);
-		frmRegistro.setTitle("Registro");
+		frmRegistro.setTitle("Netflix: Registro");
 		frmRegistro.setBounds(100, 100, 450, 292);
 		frmRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmRegistro.getContentPane().setLayout(null);

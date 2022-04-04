@@ -10,7 +10,7 @@ public class ShowDAO extends AbstractDAO {
 	
 	/**
 	 * Saca todos los shows de la base de datos y lo almacena en un array list
-	 * @return Devuleve un array list con todos los shows de la base de datos
+	 * @return Devuelve un array list con todos los shows de la base de datos
 	 */
 
 	public ArrayList<Show> getAll() {

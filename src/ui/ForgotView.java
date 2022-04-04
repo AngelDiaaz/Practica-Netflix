@@ -52,6 +52,7 @@ public class ForgotView {
 	
 	public void configureUIComponents() {
 		frmForgot = new JFrame();
+		frmForgot.setTitle("Netlix: Password");
 		frmForgot.getContentPane().setBackground(new Color(153, 204, 204));
 		frmForgot.getContentPane().setLayout(null);
 		

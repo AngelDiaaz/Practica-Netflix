@@ -21,7 +21,7 @@ import utils.DocumentWrite;
 
 public class SearchView {
 
-	private JFrame frame;
+	private JFrame frmNetflixBsqueda;
 	private JLabel lblTittle;
 	private JLabel lblType;
 	private JLabel lblDirector;
@@ -57,7 +57,7 @@ public class SearchView {
 		this.showDAO = new ShowDAO();
 		this.shows = showDAO.search(consultar, text);
 		initialize();
-		this.frame.setVisible(true);
+		this.frmNetflixBsqueda.setVisible(true);
 
 	}
 
@@ -70,113 +70,114 @@ public class SearchView {
 	}
 
 	private void configureComponents() {
-		frame = new JFrame();
-		frame.getContentPane().setBackground(new Color(153, 204, 204));
-		frame.setBounds(100, 100, 860, 570);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmNetflixBsqueda = new JFrame();
+		frmNetflixBsqueda.setTitle("Netflix: B\u00FAsqueda");
+		frmNetflixBsqueda.getContentPane().setBackground(new Color(153, 204, 204));
+		frmNetflixBsqueda.setBounds(100, 100, 860, 570);
+		frmNetflixBsqueda.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmNetflixBsqueda.getContentPane().setLayout(null);
 
 		lblTittle = new JLabel("");
 		lblTittle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTittle.setBounds(86, 0, 711, 71);
 		lblTittle.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		frame.getContentPane().add(lblTittle);
+		frmNetflixBsqueda.getContentPane().add(lblTittle);
 
 		lblType = new JLabel("");
 		lblType.setBounds(692, 234, 127, 71);
 		lblType.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		frame.getContentPane().add(lblType);
+		frmNetflixBsqueda.getContentPane().add(lblType);
 
 		lblDirector = new JLabel("");
 		lblDirector.setBounds(45, 141, 774, 55);
 		lblDirector.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		frame.getContentPane().add(lblDirector);
+		frmNetflixBsqueda.getContentPane().add(lblDirector);
 
 		lblCountry = new JLabel("");
 		lblCountry.setBounds(45, 80, 626, 55);
 		lblCountry.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		frame.getContentPane().add(lblCountry);
+		frmNetflixBsqueda.getContentPane().add(lblCountry);
 
 		lblDateAdd = new JLabel("");
 		lblDateAdd.setBounds(546, 196, 156, 35);
 		lblDateAdd.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		frame.getContentPane().add(lblDateAdd);
+		frmNetflixBsqueda.getContentPane().add(lblDateAdd);
 
 		lblYear = new JLabel("");
 		lblYear.setBounds(692, 82, 127, 41);
 		lblYear.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		frame.getContentPane().add(lblYear);
+		frmNetflixBsqueda.getContentPane().add(lblYear);
 
 		lblRating = new JLabel("");
 		lblRating.setBounds(546, 247, 136, 44);
 		lblRating.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		frame.getContentPane().add(lblRating);
+		frmNetflixBsqueda.getContentPane().add(lblRating);
 
 		lblDuration = new JLabel("");
 		lblDuration.setBounds(224, 94, 156, 41);
 		lblDuration.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		frame.getContentPane().add(lblDuration);
+		frmNetflixBsqueda.getContentPane().add(lblDuration);
 
 		lblListed = new JLabel("Listed");
 		lblListed.setForeground(Color.BLACK);
 		lblListed.setBounds(197, 196, 76, 35);
 		lblListed.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		frame.getContentPane().add(lblListed);
+		frmNetflixBsqueda.getContentPane().add(lblListed);
 
 		lblDescription = new JLabel("Description");
 		lblDescription.setForeground(Color.BLACK);
 		lblDescription.setBounds(569, 302, 103, 55);
 		lblDescription.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		frame.getContentPane().add(lblDescription);
+		frmNetflixBsqueda.getContentPane().add(lblDescription);
 
 		btnBack = new JButton("Back");
 		btnBack.setBackground(new Color(255, 255, 255));
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnBack.setBounds(35, 476, 390, 44);
-		frame.getContentPane().add(btnBack);
+		frmNetflixBsqueda.getContentPane().add(btnBack);
 
 		btnNext = new JButton("Next");
 		btnNext.setBackground(new Color(255, 255, 255));
 		btnNext.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNext.setBounds(435, 476, 390, 44);
-		frame.getContentPane().add(btnNext);
+		frmNetflixBsqueda.getContentPane().add(btnNext);
 
 		txtCast = new JTextPane();
 		txtCast.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtCast.setEditable(false);
 		txtCast.setBounds(43, 352, 375, 99);
-		frame.getContentPane().add(txtCast);
+		frmNetflixBsqueda.getContentPane().add(txtCast);
 
 		txtDescription = new JTextPane();
 		txtDescription.setBackground(Color.WHITE);
 		txtDescription.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtDescription.setBounds(439, 352, 375, 99);
-		frame.getContentPane().add(txtDescription);
+		frmNetflixBsqueda.getContentPane().add(txtDescription);
 
 		lblCast = new JLabel("Cast");
 		lblCast.setForeground(Color.BLACK);
 		lblCast.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblCast.setBounds(197, 312, 46, 35);
-		frame.getContentPane().add(lblCast);
+		frmNetflixBsqueda.getContentPane().add(lblCast);
 
 		txtListed = new JTextPane();
 		txtListed.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtListed.setEditable(false);
 		txtListed.setBounds(43, 241, 382, 71);
-		frame.getContentPane().add(txtListed);
+		frmNetflixBsqueda.getContentPane().add(txtListed);
 
 		btnFavorito = new JButton("FAV");
 		btnFavorito.setBackground(new Color(255, 255, 102));
 		btnFavorito.setForeground(Color.DARK_GRAY);
 		btnFavorito.setBounds(35, 10, 61, 55);
-		frame.getContentPane().add(btnFavorito);
+		frmNetflixBsqueda.getContentPane().add(btnFavorito);
 		
 		btnX = new JButton("X");
 		btnX.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnX.setForeground(new Color(255, 255, 255));
 		btnX.setBackground(new Color(255, 0, 51));
 		btnX.setBounds(758, 10, 61, 55);
-		frame.getContentPane().add(btnX);
+		frmNetflixBsqueda.getContentPane().add(btnX);
 
 		verShows(index);
 	}
@@ -184,7 +185,7 @@ public class SearchView {
 	private void configureListeners() {
 		btnX.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
+				frmNetflixBsqueda.dispose();
 				parent.setVisible(true);
 			}
 		});

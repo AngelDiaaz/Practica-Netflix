@@ -3,9 +3,12 @@ package utils;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
+
+import models.Show;
 
 public class DocumentWrite {
 	
@@ -66,6 +69,15 @@ public class DocumentWrite {
 		}
 		sc.close();
 		return true;
+	}
+	
+	public static ArrayList<Show> read() {
+		var shows = new ArrayList<Show>();
+		
+		
+		
+		return shows;
+		
 	}
 }
 

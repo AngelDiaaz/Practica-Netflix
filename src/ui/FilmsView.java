@@ -263,7 +263,7 @@ public class FilmsView {
 			public void actionPerformed(ActionEvent e) {
 
 				if (first) {
-					int seleccion = JOptionPane.showOptionDialog(null,
+					int seleccion = JOptionPane.showOptionDialog(frmNetflix,
 							"¿Cúal separador quieres que se use en el documento?", "Selector de opciones",
 							JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, // null para icono por
 																									// defecto.

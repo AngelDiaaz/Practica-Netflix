@@ -123,9 +123,10 @@ public class DocumentWrite {
 		try {
 			sc = new Scanner(f, "UTF-8");
 			String s = sc.nextLine();
-			var ids = s.split(",");
+			var ids = s.split(",|;|\t");
 
 			for (String id : ids) {
+				System.out.println(id);
 				// Llama a la funcion consulta para sacar el show de la base de datos con esa id
 				shows.add(showDAO.consulta(id));
 			}

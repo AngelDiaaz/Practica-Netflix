@@ -175,7 +175,7 @@ public class FilmsView {
 		btnBuscador.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnBuscador.setBounds(728, 9, 91, 55);
 		frmNetflix.getContentPane().add(btnBuscador);
-		
+
 		btnMyFavs = new JButton("Mis favoritos");
 		btnMyFavs.setBackground(new Color(51, 153, 255));
 		btnMyFavs.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -203,7 +203,7 @@ public class FilmsView {
 					buscar = "release_year";
 				}
 
-				//Si se selecciona algun campo del selector
+				// Si se selecciona algun campo del selector
 				if (select >= 0 && select <= 3) {
 					String busqueda = JOptionPane.showInputDialog(frmNetflix, "Buscador de shows");
 					try {
@@ -217,12 +217,19 @@ public class FilmsView {
 		});
 		btnMyFavs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
-					new FavsView(frmNetflix, separador);
-					frmNetflix.setVisible(false);
-				} catch (Exception e2) {
-					JOptionPane.showMessageDialog(frmNetflix, "No hay ningún show registrado, añade alguno");
+
+				int resp = JOptionPane.showConfirmDialog(frmNetflix, "¿Quieres cargar un fichero existente?");
+				if (JOptionPane.OK_OPTION == resp) {
+					try {
+						new FavsView(frmNetflix, separador);
+						frmNetflix.setVisible(false);
+					} catch (Exception e2) {
+						JOptionPane.showMessageDialog(frmNetflix, "No hay ningún show registrado, añade alguno");
+					}
+				} else {
+					System.out.println("No selecciona una opción afirmativa");
 				}
+				
 			}
 		});
 		btnBack.addKeyListener(new KeyAdapter() {

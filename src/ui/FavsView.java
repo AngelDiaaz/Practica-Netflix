@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 
@@ -165,7 +166,7 @@ public class FavsView {
 		btnFavorito.setForeground(Color.DARK_GRAY);
 		btnFavorito.setBounds(35, 10, 83, 55);
 		frmNetflixBsqueda.getContentPane().add(btnFavorito);
-		
+
 		btnX = new JButton("X");
 		btnX.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		btnX.setForeground(new Color(255, 255, 255));
@@ -213,8 +214,18 @@ public class FavsView {
 		btnFavorito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DocumentWrite.eliminarFavoritos(shows.get(index).getId(), separador);
-				frmNetflixBsqueda.dispose();
-				new FavsView(parent, separador);
+
+				// Si se quiere borrar el ultimo show de la lista de favoritos, te lanza un
+				// mensaje informativo y te vuelve a enviar a la vista de los shows principal
+				if (shows.size() == 1) {
+					JOptionPane.showMessageDialog(frmNetflixBsqueda,
+							"Se ha borrado todos los favoritos de la lista, añade más");
+					frmNetflixBsqueda.dispose();
+					parent.setVisible(true);
+				} else {
+					frmNetflixBsqueda.dispose();
+					new FavsView(parent, separador);
+				}
 			}
 		});
 	}

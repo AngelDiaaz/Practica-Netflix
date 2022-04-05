@@ -17,9 +17,10 @@ public class DocumentWrite {
 	/**
 	 * Crea un archivo csv y vuelva todos los shows favoritos en el archivo
 	 * 
-	 * @param text Show que queremos volvar en el archivo
-	 * @param separador Separador que usamos para separar los distintos shows
-	 * @param sobrescribir True si queremos agregar mas al id y false si queremos sobrescribir el documento con el texto que le pasamos
+	 * @param text         Show que queremos volvar en el archivo
+	 * @param separador    Separador que usamos para separar los distintos shows
+	 * @param sobrescribir True si queremos agregar mas al id y false si queremos
+	 *                     sobrescribir el documento con el texto que le pasamos
 	 */
 
 	public static void write(String text, String separador, boolean sobrescribir, boolean comprobar) {
@@ -45,14 +46,14 @@ public class DocumentWrite {
 			JOptionPane.showMessageDialog(null, "No se ha podido incribir adecuadamente en el archivo");
 		}
 	}
-	
+
 	/**
 	 * Elimina el id del archivo csv que nosotros queremos
 	 * 
-	 * @param id Id que queremos eliminar del archivo csv
+	 * @param id        Id que queremos eliminar del archivo csv
 	 * @param separador Caracter con el que esta separado las ids en el archivo csv
 	 */
-	
+
 	public static void eliminarFavoritos(String id, String separador) {
 		String filename = "assets/fav.csv";
 		Scanner sc = null;
@@ -62,10 +63,11 @@ public class DocumentWrite {
 			while (sc.hasNextLine()) {
 				String s = sc.nextLine();
 				var trozos = s.split(separador);
-					for (String trozo : trozos) {
-					//Cuando el id coincide no se escribe en el archivo csv
+				for (String trozo : trozos) {
+					// Cuando el id coincide no se escribe en el archivo csv, la primera vez que se
+					// usa este metodo se sobrescribe el csv
 					if (!id.equals(trozo)) {
-						write(trozo,separador, sobrescribir, true);
+						write(trozo, separador, sobrescribir, true);
 						sobrescribir = true;
 					}
 				}
@@ -105,9 +107,10 @@ public class DocumentWrite {
 		sc.close();
 		return true;
 	}
-	
+
 	/**
-	 * Lee el archivo de favoritos y saca las ids, y almacena todos los shows de favoritos en un array list
+	 * Lee el archivo de favoritos y saca las ids, y almacena todos los shows de
+	 * favoritos en un array list
 	 * 
 	 * @return Array list con todos los shows que se le han dado a favoritos
 	 */
@@ -121,12 +124,12 @@ public class DocumentWrite {
 			sc = new Scanner(f, "UTF-8");
 			String s = sc.nextLine();
 			var ids = s.split(",");
-			
+
 			for (String id : ids) {
-				//Llama a la funcion consulta para sacar el show de la base de datos con esa id
+				// Llama a la funcion consulta para sacar el show de la base de datos con esa id
 				shows.add(showDAO.consulta(id));
 			}
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -217,8 +217,12 @@ public class FilmsView {
 		});
 		btnMyFavs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new FavsView(frmNetflix, separador);
-				frmNetflix.setVisible(false);
+				try {
+					new FavsView(frmNetflix, separador);
+					frmNetflix.setVisible(false);
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(frmNetflix, "No hay ningún show registrado, añade alguno");
+				}
 			}
 		});
 		btnBack.addKeyListener(new KeyAdapter() {

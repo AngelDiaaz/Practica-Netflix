@@ -223,8 +223,13 @@ public class FavsView {
 					frmNetflixBsqueda.dispose();
 					parent.setVisible(true);
 				} else {
-					frmNetflixBsqueda.dispose();
-					new FavsView(parent, separador);
+					shows = DocumentWrite.readFavs();
+					//Si el show es el ultimo de la lista, muestra el show anterior y no el siguiente
+					if(shows.size() == index) {
+						back();
+					} else {
+						next();
+					}
 				}
 			}
 		});

@@ -30,7 +30,7 @@ public class DocumentWrite {
 			FileWriter fw = new FileWriter(fav, sobrescribir);
 
 			// Comprueba si el show ya esta registrado previamente o no
-			if (comprobarFavoritos(text, separador) || comprobar) {
+			if (comprobarFavoritos(text) || comprobar) {
 				// Escribe el texto en el archivo
 				fw.write(text + separador);
 
@@ -86,7 +86,7 @@ public class DocumentWrite {
 	 * @return True si no esta en favoritos y false si ya se encuentra registrado
 	 */
 
-	private static boolean comprobarFavoritos(String text, String separador) {
+	private static boolean comprobarFavoritos(String text) {
 		String filename = "assets/fav.csv";
 		Scanner sc = null;
 		try {
@@ -94,7 +94,7 @@ public class DocumentWrite {
 			while (sc.hasNextLine()) {
 				String s = sc.nextLine();
 
-				var trozos = s.split(separador);
+				var trozos = s.split(",|;|\t");
 				for (String trozo : trozos) {
 					if (text.equals(trozo)) {
 						return false;
@@ -126,7 +126,6 @@ public class DocumentWrite {
 			var ids = s.split(",|;|\t");
 
 			for (String id : ids) {
-				System.out.println(id);
 				// Llama a la funcion consulta para sacar el show de la base de datos con esa id
 				shows.add(showDAO.consulta(id));
 			}

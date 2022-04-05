@@ -44,6 +44,8 @@ public class FilmsView {
 	private JButton btnFavorito;
 	private int index = 0;
 	private boolean first = true;
+	private boolean questionFile = false;
+	private boolean sobrescribir = true;
 	private String separador = "";
 	private JButton btnMyFavs;
 
@@ -218,18 +220,26 @@ public class FilmsView {
 		btnMyFavs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				int resp = JOptionPane.showConfirmDialog(frmNetflix, "¿Quieres cargar un fichero existente?");
-				if (JOptionPane.OK_OPTION == resp) {
-					try {
-						new FavsView(frmNetflix, separador);
-						frmNetflix.setVisible(false);
-					} catch (Exception e2) {
-						JOptionPane.showMessageDialog(frmNetflix, "No hay ningún show registrado, añade alguno");
+				// Si no se ha preguntado si se quiere crear o cargar el fichero con los shows
+				// favoritos
+				if (!questionFile) {
+					int resp = JOptionPane.showConfirmDialog(frmNetflix,
+							"¿Quieres cargar un fichero existente con los shows favoritos?\n(Sino se creará uno nuevo)");
+					if (JOptionPane.OK_OPTION == resp) {
+
+					} else {
+						System.out.println("No selecciona una opción afirmativa");
 					}
-				} else {
-					System.out.println("No selecciona una opción afirmativa");
+					questionFile = true;
 				}
-				
+
+				try {
+					new FavsView(frmNetflix, separador);
+					frmNetflix.setVisible(false);
+				} catch (Exception e2) {
+					JOptionPane.showMessageDialog(frmNetflix, "No hay ningún show registrado, añade alguno");
+				}
+
 			}
 		});
 		btnBack.addKeyListener(new KeyAdapter() {
@@ -262,6 +272,18 @@ public class FilmsView {
 		btnFavorito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
+				// Si le hemos dado a que se carge o se cree el fichero favoritos
+				if (!questionFile && first) {
+					int resp = JOptionPane.showConfirmDialog(frmNetflix,
+							"¿Quieres cargar un fichero existente con los shows favoritos?\n(Sino se creará uno nuevo)");
+					if (JOptionPane.OK_OPTION != resp) {
+						sobrescribir = false;
+					}
+					questionFile = true;
+				}
+
+				// Si no se ha preguntado cual tipo de separador queremos que use para almacenar
+				// la id en el fichero
 				if (first) {
 					int seleccion = JOptionPane.showOptionDialog(frmNetflix,
 							"¿Cúal separador quieres que se use en el documento?", "Selector de opciones",
@@ -276,11 +298,11 @@ public class FilmsView {
 						separador = "\t";
 					}
 				}
-
 				// Cada vez que se pulsa el boton escribe el id del show en un
 				// documento
-				DocumentWrite.write(shows.get(index).getId(), separador, true, false);
+				DocumentWrite.write(shows.get(index).getId(), separador, sobrescribir, false);
 				first = false;
+				sobrescribir = true;
 			}
 		});
 	}

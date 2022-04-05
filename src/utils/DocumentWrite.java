@@ -65,7 +65,7 @@ public class DocumentWrite {
 					for (String trozo : trozos) {
 					//Cuando el id coincide no se escribe en el archivo csv
 					if (!id.equals(trozo)) {
-						write(id,separador, sobrescribir, true);
+						write(trozo,separador, sobrescribir, true);
 						sobrescribir = true;
 					}
 				}

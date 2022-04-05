@@ -213,6 +213,8 @@ public class FavsView {
 		btnFavorito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DocumentWrite.eliminarFavoritos(shows.get(index).getId(), separador);
+				frmNetflixBsqueda.dispose();
+				new FavsView(parent, separador);
 			}
 		});
 	}

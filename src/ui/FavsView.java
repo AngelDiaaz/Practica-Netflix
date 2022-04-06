@@ -174,7 +174,7 @@ public class FavsView {
 		btnX.setBounds(758, 10, 61, 55);
 		frmNetflixBsqueda.getContentPane().add(btnX);
 
-		verShows(index);
+		showShows(index);
 	}
 
 	private void configureListeners() {
@@ -236,24 +236,38 @@ public class FavsView {
 			}
 		});
 	}
+	
+	/**
+	 * Recorre el array a la posicion anterior
+	 */
 
 	private void back() {
 		index--;
 		if (index < 0) { // Cuando el index es la primera posicion del array list
 			index = shows.size() - 1;
 		}
-		verShows(index);
+		showShows(index);
 	}
+	
+	/**
+	 * Recorre el array a la posicion siguiente
+	 */
 
 	private void next() {
 		index++;
 		if (index == shows.size()) { // Cuando el index es la ultima posicion del array list
 			index = 0;
 		}
-		verShows(index);
+		showShows(index);
 	}
+	
+	/**
+	 * Metodo que muestra las caracteristicas de cada show en la interfaz grafica
+	 * 
+	 * @param index Posicion del show en el array que queremos mostrar
+	 */
 
-	private void verShows(int index) {
+	private void showShows(int index) {
 
 		lblTittle.setText(shows.get(index).getTitle());
 		lblType.setText(shows.get(index).getType());

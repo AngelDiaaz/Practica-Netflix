@@ -22,7 +22,7 @@ public class DocumentWrite {
 	 * 
 	 * @param text         Show que queremos volvar en el archivo
 	 * @param separador    Separador que usamos para separar los distintos shows
-	 * @param sobrescribir True si queremos agregar mas al id y false si queremos
+	 * @param sobrescribir True si queremos agregar mas a las ids y false si queremos
 	 *                     sobrescribir el documento con el texto que le pasamos
 	 */
 

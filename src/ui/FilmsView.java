@@ -42,12 +42,13 @@ public class FilmsView {
 	private JTextPane txtCast;
 	private JTextPane txtDescription;
 	private JButton btnFavorito;
+	private JButton btnMyFavs;
 	private int index = 0;
 	private boolean first = true;
 	private boolean questionFile = false;
 	private boolean sobrescribir = true;
-	private String separador = ","; // Pongo esto por defecto, por si quiero cargar un fichero existente
-	private JButton btnMyFavs;
+	private String separador = ","; // Pongo la coma por defecto, por si quiero cargar un fichero existente, que use
+									// ese separador
 
 	/**
 	 * Create the application.
@@ -184,7 +185,7 @@ public class FilmsView {
 		btnMyFavs.setBounds(367, 476, 127, 44);
 		frmNetflix.getContentPane().add(btnMyFavs);
 
-		verShows(index);
+		showShows(index);
 	}
 
 	private void configureListeners() {
@@ -192,6 +193,7 @@ public class FilmsView {
 			public void actionPerformed(ActionEvent e) {
 				String buscar = "";
 
+				// Te pregunta por cual campo quieres buscar el show
 				int select = JOptionPane.showOptionDialog(frmNetflix, "¿Por cúal campo quieres buscar los shows?",
 						"Selector de opciones", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null,
 						new Object[] { "Nombre", "País", "Director", "Año" }, "");
@@ -220,18 +222,7 @@ public class FilmsView {
 		btnMyFavs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				// Si no se ha preguntado si se quiere crear o cargar el fichero con los shows
-				// favoritos
-				if (!questionFile) {
-					int resp = JOptionPane.showConfirmDialog(frmNetflix,
-							"¿Quieres cargar un fichero existente con los shows favoritos?\n(Sino se creará uno nuevo)");
-					if (JOptionPane.OK_OPTION != resp) {
-						DocumentWrite.deleteFile();
-					} else {
-						first = false;
-					}
-					questionFile = true;
-				}
+				questionFile();
 
 				try {
 					new FavsView(frmNetflix, separador);
@@ -272,18 +263,9 @@ public class FilmsView {
 		btnFavorito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				// Si le hemos dado a que se carge o se cree el fichero favoritos
-				if (!questionFile) {
-					int resp = JOptionPane.showConfirmDialog(frmNetflix,
-							"¿Quieres cargar un fichero existente con los shows favoritos?\n(Sino se creará uno nuevo)");
-					if (JOptionPane.OK_OPTION != resp) {
-						DocumentWrite.deleteFile();
-						sobrescribir = false;
-						first = false;
-					}
-					questionFile = true;
-				}
-				if(first) {
+				questionFile();
+
+				if (first) {
 					// Si no se ha preguntado cual tipo de separador queremos que use para almacenar
 					// la id en el fichero
 					int seleccion = JOptionPane.showOptionDialog(frmNetflix,
@@ -310,23 +292,59 @@ public class FilmsView {
 		});
 	}
 
+	/**
+	 * Metodo que pregunta si quieres cargar el fichero o eliminarlo
+	 */
+
+	private void questionFile() {
+		// Si no se ha preguntado si se quiere crear o cargar el fichero con los shows
+		// favoritos
+		if (!questionFile) {
+			int resp = JOptionPane.showConfirmDialog(frmNetflix,
+					"¿Quieres cargar un fichero existente con los shows favoritos?\n(Sino se creará uno nuevo)");
+			if (JOptionPane.OK_OPTION != resp) {
+				// Al generar un nuevo archivo se sobrescribira todo, eliminando lo que habia
+				// anteriormente
+				sobrescribir = false;
+			} else {
+				// Si seleccionamos cargar un fichero no te preguntara por los separadores
+				first = false;
+			}
+			questionFile = true;
+		}
+	}
+
+	/**
+	 * Recorre el array a la posicion anterior
+	 */
+
 	private void back() {
 		index--;
 		if (index < 0) { // Cuando el index es la primera posicion del array list
 			index = shows.size() - 1;
 		}
-		verShows(index);
+		showShows(index);
 	}
+
+	/**
+	 * Recorre el array a la posicion siguiente
+	 */
 
 	private void next() {
 		index++;
 		if (index == shows.size()) { // Cuando el index es la ultima posicion del array list
 			index = 0;
 		}
-		verShows(index);
+		showShows(index);
 	}
 
-	private void verShows(int index) {
+	/**
+	 * Metodo que muestra las caracteristicas de cada show en la interfaz grafica
+	 * 
+	 * @param index Posicion del show en el array que queremos mostrar
+	 */
+
+	private void showShows(int index) {
 
 		lblTittle.setText(shows.get(index).getTitle());
 		lblType.setText(shows.get(index).getType());

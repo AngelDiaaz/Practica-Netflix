@@ -46,7 +46,7 @@ public class FilmsView {
 	private boolean first = true;
 	private boolean questionFile = false;
 	private boolean sobrescribir = true;
-	private String separador = "";
+	private String separador = ","; // Pongo esto por defecto, por si quiero cargar un fichero existente
 	private JButton btnMyFavs;
 
 	/**
@@ -225,10 +225,10 @@ public class FilmsView {
 				if (!questionFile) {
 					int resp = JOptionPane.showConfirmDialog(frmNetflix,
 							"¿Quieres cargar un fichero existente con los shows favoritos?\n(Sino se creará uno nuevo)");
-					if (JOptionPane.OK_OPTION == resp) {
-
+					if (JOptionPane.OK_OPTION != resp) {
+						DocumentWrite.deleteFile();
 					} else {
-						System.out.println("No selecciona una opción afirmativa");
+						first = false;
 					}
 					questionFile = true;
 				}
@@ -273,21 +273,23 @@ public class FilmsView {
 			public void actionPerformed(ActionEvent e) {
 
 				// Si le hemos dado a que se carge o se cree el fichero favoritos
-				if (!questionFile && first) {
+				if (!questionFile) {
 					int resp = JOptionPane.showConfirmDialog(frmNetflix,
 							"¿Quieres cargar un fichero existente con los shows favoritos?\n(Sino se creará uno nuevo)");
 					if (JOptionPane.OK_OPTION != resp) {
+						DocumentWrite.deleteFile();
 						sobrescribir = false;
+						first = false;
 					}
 					questionFile = true;
 				}
-
-				// Si no se ha preguntado cual tipo de separador queremos que use para almacenar
-				// la id en el fichero
-				if (first) {
+				if(first) {
+					// Si no se ha preguntado cual tipo de separador queremos que use para almacenar
+					// la id en el fichero
 					int seleccion = JOptionPane.showOptionDialog(frmNetflix,
 							"¿Cúal separador quieres que se use en el documento?", "Selector de opciones",
-							JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, // null para icono por
+							JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, // null para icono
+																									// por
 																									// defecto.
 							new Object[] { "Coma", "Punto y coma", "Tabulador" }, "");
 					if (seleccion == 0) {
@@ -298,6 +300,7 @@ public class FilmsView {
 						separador = "\t";
 					}
 				}
+
 				// Cada vez que se pulsa el boton escribe el id del show en un
 				// documento
 				DocumentWrite.write(shows.get(index).getId(), separador, sobrescribir, false);

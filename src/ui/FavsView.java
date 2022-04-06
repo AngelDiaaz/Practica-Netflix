@@ -38,7 +38,7 @@ public class FavsView {
 	private ArrayList<Show> shows;
 	private JTextPane txtCast;
 	private JTextPane txtDescription;
-	private JButton btnFavorito;
+	private JButton btnDelete;
 	private JFrame parent;
 	private int index = 0;
 	private String separador;
@@ -161,11 +161,11 @@ public class FavsView {
 		txtListed.setBounds(43, 241, 382, 71);
 		frmNetflixBsqueda.getContentPane().add(txtListed);
 
-		btnFavorito = new JButton("QUITAR");
-		btnFavorito.setBackground(new Color(255, 255, 102));
-		btnFavorito.setForeground(Color.DARK_GRAY);
-		btnFavorito.setBounds(35, 10, 83, 55);
-		frmNetflixBsqueda.getContentPane().add(btnFavorito);
+		btnDelete = new JButton("QUITAR");
+		btnDelete.setBackground(new Color(255, 255, 102));
+		btnDelete.setForeground(Color.DARK_GRAY);
+		btnDelete.setBounds(35, 10, 83, 55);
+		frmNetflixBsqueda.getContentPane().add(btnDelete);
 
 		btnX = new JButton("X");
 		btnX.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -211,7 +211,7 @@ public class FavsView {
 				next();
 			}
 		});
-		btnFavorito.addActionListener(new ActionListener() {
+		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DocumentWrite.eliminarFavoritos(shows.get(index).getId(), separador);
 
@@ -220,12 +220,14 @@ public class FavsView {
 				if (shows.size() == 1) {
 					JOptionPane.showMessageDialog(frmNetflixBsqueda,
 							"Se ha borrado todos los favoritos de la lista, añade más");
+					DocumentWrite.write("", "", false, false);
 					frmNetflixBsqueda.dispose();
 					parent.setVisible(true);
 				} else {
 					shows = DocumentWrite.readFavs();
-					//Si el show es el ultimo de la lista, muestra el show anterior y no el siguiente
-					if(shows.size() == index) {
+					// Si el show es el ultimo de la lista, muestra el show anterior y no el
+					// siguiente
+					if (shows.size() == index) {
 						back();
 					} else {
 						next();
@@ -264,6 +266,12 @@ public class FavsView {
 		txtDescription.setText(shows.get(index).getDescription());
 		txtListed.setText(shows.get(index).getListed());
 
+		// Para cuando solo haya un elemento en favoritos no se muestren los botones de
+		// avanzar y retroceder
+		if (shows.size() == 1) {
+			btnBack.setVisible(false);
+			btnNext.setVisible(false);
+		}
 	}
 
 }

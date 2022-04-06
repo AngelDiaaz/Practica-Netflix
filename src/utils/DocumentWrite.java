@@ -13,6 +13,9 @@ import dao.ShowDAO;
 import models.Show;
 
 public class DocumentWrite {
+	
+	private final static String fav = "assets/fav.csv";
+	private static File f = new File(fav);
 
 	/**
 	 * Crea un archivo csv y vuelva todos los shows favoritos en el archivo
@@ -25,9 +28,7 @@ public class DocumentWrite {
 
 	public static void write(String text, String separador, boolean sobrescribir, boolean comprobar) {
 		try {
-			File fav = new File("assets/fav.csv");
-
-			FileWriter fw = new FileWriter(fav, sobrescribir);
+			FileWriter fw = new FileWriter(f, sobrescribir);
 
 			// Comprueba si el show ya esta registrado previamente o no
 			if (comprobarFavoritos(text) || comprobar) {
@@ -55,15 +56,18 @@ public class DocumentWrite {
 	 */
 
 	public static void eliminarFavoritos(String id, String separador) {
-		String filename = "assets/fav.csv";
 		Scanner sc = null;
 		boolean sobrescribir = false;
 		try {
-			sc = new Scanner(new File(filename), "UTF-8");
+			sc = new Scanner(f, "UTF-8");
 			while (sc.hasNextLine()) {
 				String s = sc.nextLine();
-				var trozos = s.split(separador);
+				var trozos = s.split(",|;|\t");
 				for (String trozo : trozos) {
+					if(trozos.length == 1) {
+						separador = "";
+					}
+					
 					// Cuando el id coincide no se escribe en el archivo csv, la primera vez que se
 					// usa este metodo se sobrescribe el csv
 					if (!id.equals(trozo)) {
@@ -87,10 +91,9 @@ public class DocumentWrite {
 	 */
 
 	private static boolean comprobarFavoritos(String text) {
-		String filename = "assets/fav.csv";
 		Scanner sc = null;
 		try {
-			sc = new Scanner(new File(filename), "UTF-8");
+			sc = new Scanner(new File(fav), "UTF-8");
 			while (sc.hasNextLine()) {
 				String s = sc.nextLine();
 
@@ -119,7 +122,6 @@ public class DocumentWrite {
 		var shows = new ArrayList<Show>();
 		ShowDAO showDAO = new ShowDAO();
 		Scanner sc = null;
-		File f = new File("assets/fav.csv");
 		try {
 			sc = new Scanner(f, "UTF-8");
 			String s = sc.nextLine();
@@ -134,5 +136,16 @@ public class DocumentWrite {
 			e.printStackTrace();
 		}
 		return shows;
+	}
+	
+	/**
+	 * Elimina el archivo csv y vuelve a crear otro nuevo
+	 */
+	
+	public static void deleteFile() {
+		f.delete();
+		
+		f = new File(fav);
+		
 	}
 }

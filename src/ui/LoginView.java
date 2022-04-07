@@ -83,7 +83,7 @@ public class LoginView {
 			frmLogin.getContentPane().add(lblUsuario);
 
 			tfUsuario = new JTextField();
-			tfUsuario.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			tfUsuario.setFont(new Font("Tahoma", Font.BOLD, 15));
 			tfUsuario.setBounds(228, 122, 223, 30);
 			frmLogin.getContentPane().add(tfUsuario);
 			tfUsuario.setColumns(10);
@@ -103,7 +103,7 @@ public class LoginView {
 			frmLogin.getContentPane().add(btnEntrar);
 
 			pfPassword = new JPasswordField();
-			pfPassword.setFont(new Font("Tahoma", Font.PLAIN, 16));
+			pfPassword.setFont(new Font("Tahoma", Font.BOLD, 15));
 			pfPassword.setBounds(228, 180, 223, 29);
 			frmLogin.getContentPane().add(pfPassword);
 			

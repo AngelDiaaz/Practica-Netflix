@@ -44,6 +44,7 @@ public class FilmsView {
 	private JTextPane txtDescription;
 	private JButton btnFavorito;
 	private JButton btnMyFavs;
+	private JButton btnX;
 	private int index = 0;
 	private boolean first = true;
 	private boolean questionFile = false;
@@ -101,7 +102,7 @@ public class FilmsView {
 
 		lblCountry = new JLabel("");
 		lblCountry.setForeground(new Color(255, 255, 255));
-		lblCountry.setBounds(46, 82, 626, 55);
+		lblCountry.setBounds(46, 82, 474, 55);
 		lblCountry.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmNetflix.getContentPane().add(lblCountry);
 
@@ -113,7 +114,7 @@ public class FilmsView {
 
 		lblYear = new JLabel("");
 		lblYear.setForeground(new Color(255, 255, 255));
-		lblYear.setBounds(692, 82, 127, 41);
+		lblYear.setBounds(546, 89, 127, 41);
 		lblYear.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmNetflix.getContentPane().add(lblYear);
 
@@ -191,7 +192,7 @@ public class FilmsView {
 		btnBuscador.setBackground(new Color(153, 255, 153));
 		btnBuscador.setForeground(new Color(0, 0, 0));
 		btnBuscador.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnBuscador.setBounds(728, 9, 91, 55);
+		btnBuscador.setBounds(728, 82, 91, 55);
 		frmNetflix.getContentPane().add(btnBuscador);
 
 		btnMyFavs = new JButton("Mis favoritos");
@@ -199,6 +200,13 @@ public class FilmsView {
 		btnMyFavs.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnMyFavs.setBounds(367, 476, 127, 44);
 		frmNetflix.getContentPane().add(btnMyFavs);
+		
+		btnX = new JButton("X");
+		btnX.setForeground(Color.WHITE);
+		btnX.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnX.setBackground(new Color(255, 0, 51));
+		btnX.setBounds(758, 10, 61, 55);
+		frmNetflix.getContentPane().add(btnX);
 
 		showShows(index);
 	}
@@ -272,6 +280,12 @@ public class FilmsView {
 		btnNext.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				next();
+			}
+		});
+		btnX.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmNetflix.dispose();
+				new LoginView();
 			}
 		});
 		btnFavorito.addActionListener(new ActionListener() {

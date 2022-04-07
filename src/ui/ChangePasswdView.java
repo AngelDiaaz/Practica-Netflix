@@ -3,6 +3,7 @@ package ui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -54,6 +55,7 @@ public class ChangePasswdView {
 		frmChange.setTitle("Netflix: Password");
 		frmChange.getContentPane().setBackground(new Color(153, 204, 204));
 		frmChange.getContentPane().setLayout(null);
+		frmChange.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\adiaz\\OneDrive\\Escritorio\\Programaci\u00F3n\\Workspace\\PracticaNetflix\\assets\\icon netflix.png"));
 
 		lblChange = new JLabel("Cambio de contrase\u00F1a");
 		lblChange.setForeground(new Color(255, 255, 255));

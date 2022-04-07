@@ -2,6 +2,7 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -72,43 +73,52 @@ public class FilmsView {
 	private void configureComponents() {
 		frmNetflix = new JFrame();
 		frmNetflix.setTitle("Netflix");
-		frmNetflix.getContentPane().setBackground(new Color(153, 204, 204));
+		frmNetflix.getContentPane().setBackground(Color.DARK_GRAY);
 		frmNetflix.setBounds(100, 100, 860, 570);
 		frmNetflix.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNetflix.getContentPane().setLayout(null);
+		frmNetflix.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\adiaz\\OneDrive\\Escritorio\\Programaci\u00F3n\\Workspace\\PracticaNetflix\\assets\\icon netflix.png"));
+
 
 		lblTittle = new JLabel("");
+		lblTittle.setForeground(new Color(255, 255, 255));
 		lblTittle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTittle.setBounds(55, 0, 711, 71);
 		lblTittle.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmNetflix.getContentPane().add(lblTittle);
 
 		lblType = new JLabel("");
+		lblType.setForeground(new Color(255, 255, 255));
 		lblType.setBounds(692, 234, 127, 71);
 		lblType.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmNetflix.getContentPane().add(lblType);
 
 		lblDirector = new JLabel("");
+		lblDirector.setForeground(new Color(255, 255, 255));
 		lblDirector.setBounds(45, 141, 774, 55);
 		lblDirector.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmNetflix.getContentPane().add(lblDirector);
 
 		lblCountry = new JLabel("");
+		lblCountry.setForeground(new Color(255, 255, 255));
 		lblCountry.setBounds(46, 82, 626, 55);
 		lblCountry.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmNetflix.getContentPane().add(lblCountry);
 
 		lblDateAdd = new JLabel("");
+		lblDateAdd.setForeground(new Color(255, 255, 255));
 		lblDateAdd.setBounds(546, 196, 156, 35);
 		lblDateAdd.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmNetflix.getContentPane().add(lblDateAdd);
 
 		lblYear = new JLabel("");
+		lblYear.setForeground(new Color(255, 255, 255));
 		lblYear.setBounds(692, 82, 127, 41);
 		lblYear.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmNetflix.getContentPane().add(lblYear);
 
 		lblRating = new JLabel("");
+		lblRating.setForeground(new Color(255, 255, 255));
 		lblRating.setBounds(546, 247, 136, 44);
 		lblRating.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmNetflix.getContentPane().add(lblRating);
@@ -119,55 +129,60 @@ public class FilmsView {
 		frmNetflix.getContentPane().add(lblDuration);
 
 		lblListed = new JLabel("Listed");
-		lblListed.setForeground(Color.BLACK);
+		lblListed.setForeground(new Color(255, 255, 255));
 		lblListed.setBounds(197, 196, 76, 35);
 		lblListed.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmNetflix.getContentPane().add(lblListed);
 
 		lblDescription = new JLabel("Description");
-		lblDescription.setForeground(Color.BLACK);
+		lblDescription.setForeground(new Color(255, 255, 255));
 		lblDescription.setBounds(569, 302, 103, 55);
 		lblDescription.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmNetflix.getContentPane().add(lblDescription);
 
 		btnBack = new JButton("Back");
-		btnBack.setBackground(new Color(255, 255, 255));
+		btnBack.setBackground(new Color(153, 255, 204));
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnBack.setBounds(35, 476, 301, 44);
 		frmNetflix.getContentPane().add(btnBack);
 
 		btnNext = new JButton("Next");
-		btnNext.setBackground(new Color(255, 255, 255));
+		btnNext.setBackground(new Color(153, 255, 204));
 		btnNext.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNext.setBounds(524, 476, 301, 44);
 		frmNetflix.getContentPane().add(btnNext);
 
 		txtCast = new JTextPane();
+		txtCast.setForeground(Color.WHITE);
+		txtCast.setBackground(Color.DARK_GRAY);
 		txtCast.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtCast.setEditable(false);
 		txtCast.setBounds(43, 352, 375, 99);
 		frmNetflix.getContentPane().add(txtCast);
 
 		txtDescription = new JTextPane();
-		txtDescription.setBackground(Color.WHITE);
+		txtDescription.setForeground(Color.WHITE);
+		txtDescription.setBackground(Color.DARK_GRAY);
 		txtDescription.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtDescription.setBounds(439, 352, 375, 99);
 		frmNetflix.getContentPane().add(txtDescription);
 
 		lblCast = new JLabel("Cast");
-		lblCast.setForeground(Color.BLACK);
+		lblCast.setForeground(new Color(255, 255, 255));
 		lblCast.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblCast.setBounds(197, 312, 46, 35);
 		frmNetflix.getContentPane().add(lblCast);
 
 		txtListed = new JTextPane();
+		txtListed.setForeground(Color.WHITE);
+		txtListed.setBackground(Color.DARK_GRAY);
 		txtListed.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtListed.setEditable(false);
 		txtListed.setBounds(43, 241, 382, 71);
 		frmNetflix.getContentPane().add(txtListed);
 
 		btnFavorito = new JButton("FAV");
-		btnFavorito.setBackground(new Color(255, 255, 102));
+		btnFavorito.setBackground(Color.WHITE);
 		btnFavorito.setForeground(Color.DARK_GRAY);
 		btnFavorito.setBounds(35, 10, 61, 55);
 		frmNetflix.getContentPane().add(btnFavorito);
@@ -230,7 +245,6 @@ public class FilmsView {
 				} catch (Exception e2) {
 					JOptionPane.showMessageDialog(frmNetflix, "No hay ningún show registrado, añade alguno");
 				}
-
 			}
 		});
 		btnBack.addKeyListener(new KeyAdapter() {
@@ -282,7 +296,10 @@ public class FilmsView {
 						separador = "\t";
 					}
 				}
-
+				//Para que se ponga el boton en amarrillo al darle
+				btnFavorito.setBackground(new Color(255, 255, 102));
+				
+				
 				// Cada vez que se pulsa el boton escribe el id del show en un
 				// documento
 				DocumentWrite.write(shows.get(index).getId(), separador, sobrescribir, false);
@@ -305,7 +322,9 @@ public class FilmsView {
 			if (JOptionPane.OK_OPTION != resp) {
 				// Al generar un nuevo archivo se sobrescribira todo, eliminando lo que habia
 				// anteriormente
+				DocumentWrite.write("", "", false, false);
 				sobrescribir = false;
+				showShows(index);
 			} else {
 				// Si seleccionamos cargar un fichero no te preguntara por los separadores
 				first = false;
@@ -357,5 +376,20 @@ public class FilmsView {
 		txtDescription.setText(shows.get(index).getDescription());
 		txtListed.setText(shows.get(index).getListed());
 
+		comprobarFav(shows.get(index));
+	}
+	
+	/**
+	 * Comprueba si el show esta en favorito o no, si lo esta el boton de fav se pondra amarrillo, sino se dejara en blanco
+	 *
+	 * @param show Show que queremos comprobar si esta en favorito
+	 */
+	
+	private void comprobarFav(Show show) {
+		if(DocumentWrite.comprobarFavoritos(show.getId())) {
+			btnFavorito.setBackground(Color.WHITE);
+		} else {
+			btnFavorito.setBackground(new Color(255, 255, 102));
+		}
 	}
 }

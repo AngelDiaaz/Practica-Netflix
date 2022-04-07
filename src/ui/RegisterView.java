@@ -2,6 +2,7 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -69,6 +70,7 @@ public class RegisterView {
 		frmRegistro.setBounds(100, 100, 450, 292);
 		frmRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmRegistro.getContentPane().setLayout(null);
+		frmRegistro.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\adiaz\\OneDrive\\Escritorio\\Programaci\u00F3n\\Workspace\\PracticaNetflix\\assets\\icon netflix.png"));
 
 		lblRegistro = new JLabel("Crear Cuenta");
 		lblRegistro.setForeground(Color.WHITE);

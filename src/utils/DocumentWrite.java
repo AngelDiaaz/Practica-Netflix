@@ -90,7 +90,7 @@ public class DocumentWrite {
 	 * @return True si no esta en favoritos y false si ya se encuentra registrado
 	 */
 
-	private static boolean comprobarFavoritos(String text) {
+	public static boolean comprobarFavoritos(String text) {
 		Scanner sc = null;
 		try {
 			sc = new Scanner(new File(fav), "UTF-8");

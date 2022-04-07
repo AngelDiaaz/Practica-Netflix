@@ -2,6 +2,7 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -55,6 +56,7 @@ public class ForgotView {
 		frmForgot.setTitle("Netlix: Password");
 		frmForgot.getContentPane().setBackground(new Color(153, 204, 204));
 		frmForgot.getContentPane().setLayout(null);
+		frmForgot.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\adiaz\\OneDrive\\Escritorio\\Programaci\u00F3n\\Workspace\\PracticaNetflix\\assets\\icon netflix.png"));
 		
 		lblForgot = new JLabel("Forgot Password");
 		lblForgot.setForeground(Color.WHITE);

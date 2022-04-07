@@ -2,6 +2,7 @@ package ui;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -72,43 +73,51 @@ public class SearchView {
 	private void configureComponents() {
 		frmNetflixBsqueda = new JFrame();
 		frmNetflixBsqueda.setTitle("Netflix: B\u00FAsqueda");
-		frmNetflixBsqueda.getContentPane().setBackground(new Color(153, 204, 204));
+		frmNetflixBsqueda.getContentPane().setBackground(Color.DARK_GRAY);
 		frmNetflixBsqueda.setBounds(100, 100, 860, 570);
 		frmNetflixBsqueda.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNetflixBsqueda.getContentPane().setLayout(null);
+		frmNetflixBsqueda.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\adiaz\\OneDrive\\Escritorio\\Programaci\u00F3n\\Workspace\\PracticaNetflix\\assets\\icon netflix.png"));
 
 		lblTittle = new JLabel("");
+		lblTittle.setForeground(Color.WHITE);
 		lblTittle.setHorizontalAlignment(SwingConstants.CENTER);
 		lblTittle.setBounds(86, 0, 711, 71);
 		lblTittle.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmNetflixBsqueda.getContentPane().add(lblTittle);
 
 		lblType = new JLabel("");
+		lblType.setForeground(Color.WHITE);
 		lblType.setBounds(692, 234, 127, 71);
 		lblType.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmNetflixBsqueda.getContentPane().add(lblType);
 
 		lblDirector = new JLabel("");
+		lblDirector.setForeground(Color.WHITE);
 		lblDirector.setBounds(45, 141, 774, 55);
 		lblDirector.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmNetflixBsqueda.getContentPane().add(lblDirector);
 
 		lblCountry = new JLabel("");
+		lblCountry.setForeground(Color.WHITE);
 		lblCountry.setBounds(45, 80, 626, 55);
 		lblCountry.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmNetflixBsqueda.getContentPane().add(lblCountry);
 
 		lblDateAdd = new JLabel("");
+		lblDateAdd.setForeground(Color.WHITE);
 		lblDateAdd.setBounds(546, 196, 156, 35);
 		lblDateAdd.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmNetflixBsqueda.getContentPane().add(lblDateAdd);
 
 		lblYear = new JLabel("");
+		lblYear.setForeground(Color.WHITE);
 		lblYear.setBounds(692, 82, 127, 41);
 		lblYear.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmNetflixBsqueda.getContentPane().add(lblYear);
 
 		lblRating = new JLabel("");
+		lblRating.setForeground(Color.WHITE);
 		lblRating.setBounds(546, 247, 136, 44);
 		lblRating.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmNetflixBsqueda.getContentPane().add(lblRating);
@@ -119,48 +128,53 @@ public class SearchView {
 		frmNetflixBsqueda.getContentPane().add(lblDuration);
 
 		lblListed = new JLabel("Listed");
-		lblListed.setForeground(Color.BLACK);
+		lblListed.setForeground(Color.WHITE);
 		lblListed.setBounds(197, 196, 76, 35);
 		lblListed.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmNetflixBsqueda.getContentPane().add(lblListed);
 
 		lblDescription = new JLabel("Description");
-		lblDescription.setForeground(Color.BLACK);
+		lblDescription.setForeground(Color.WHITE);
 		lblDescription.setBounds(569, 302, 103, 55);
 		lblDescription.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		frmNetflixBsqueda.getContentPane().add(lblDescription);
 
 		btnBack = new JButton("Back");
-		btnBack.setBackground(new Color(255, 255, 255));
+		btnBack.setBackground(new Color(153, 255, 204));
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnBack.setBounds(35, 476, 390, 44);
 		frmNetflixBsqueda.getContentPane().add(btnBack);
 
 		btnNext = new JButton("Next");
-		btnNext.setBackground(new Color(255, 255, 255));
+		btnNext.setBackground(new Color(153, 255, 204));
 		btnNext.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNext.setBounds(435, 476, 390, 44);
 		frmNetflixBsqueda.getContentPane().add(btnNext);
 
 		txtCast = new JTextPane();
+		txtCast.setForeground(Color.WHITE);
+		txtCast.setBackground(Color.DARK_GRAY);
 		txtCast.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtCast.setEditable(false);
 		txtCast.setBounds(43, 352, 375, 99);
 		frmNetflixBsqueda.getContentPane().add(txtCast);
 
 		txtDescription = new JTextPane();
-		txtDescription.setBackground(Color.WHITE);
+		txtDescription.setForeground(Color.WHITE);
+		txtDescription.setBackground(Color.DARK_GRAY);
 		txtDescription.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtDescription.setBounds(439, 352, 375, 99);
 		frmNetflixBsqueda.getContentPane().add(txtDescription);
 
 		lblCast = new JLabel("Cast");
-		lblCast.setForeground(Color.BLACK);
+		lblCast.setForeground(Color.WHITE);
 		lblCast.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblCast.setBounds(197, 312, 46, 35);
 		frmNetflixBsqueda.getContentPane().add(lblCast);
 
 		txtListed = new JTextPane();
+		txtListed.setForeground(Color.WHITE);
+		txtListed.setBackground(Color.DARK_GRAY);
 		txtListed.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtListed.setEditable(false);
 		txtListed.setBounds(43, 241, 382, 71);
@@ -179,7 +193,7 @@ public class SearchView {
 		btnX.setBounds(758, 10, 61, 55);
 		frmNetflixBsqueda.getContentPane().add(btnX);
 
-		verShows(index);
+		showShows(index);
 	}
 
 	private void configureListeners() {
@@ -233,6 +247,9 @@ public class SearchView {
 						separador = "\t";
 					}
 				}
+				
+				//Para que se ponga el boton en amarrillo al darle
+				btnFavorito.setBackground(new Color(255, 255, 102));
 
 				// Cada vez que se pulsa el boton escribe el id del show en un
 				// documento
@@ -247,7 +264,7 @@ public class SearchView {
 		if (index < 0) { // Cuando el index es la primera posicion del array list
 			index = shows.size() - 1;
 		}
-		verShows(index);
+		showShows(index);
 	}
 
 	private void next() {
@@ -255,10 +272,10 @@ public class SearchView {
 		if (index == shows.size()) { // Cuando el index es la ultima posicion del array list
 			index = 0;
 		}
-		verShows(index);
+		showShows(index);
 	}
 
-	private void verShows(int index) {
+	private void showShows(int index) {
 
 		lblTittle.setText(shows.get(index).getTitle());
 		lblType.setText(shows.get(index).getType());
@@ -271,6 +288,21 @@ public class SearchView {
 		txtDescription.setText(shows.get(index).getDescription());
 		txtListed.setText(shows.get(index).getListed());
 
+		comprobarFav(shows.get(index));
+	}
+	
+	/**
+	 * Comprueba si el show esta en favorito o no, si lo esta el boton de fav se pondra amarrillo, sino se dejara en blanco
+	 *
+	 * @param show Show que queremos comprobar si esta en favorito
+	 */
+	
+	private void comprobarFav(Show show) {
+		if(DocumentWrite.comprobarFavoritos(show.getId())) {
+			btnFavorito.setBackground(Color.WHITE);
+		} else {
+			btnFavorito.setBackground(new Color(255, 255, 102));
+		}
 	}
 
 }

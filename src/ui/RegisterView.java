@@ -64,80 +64,80 @@ public class RegisterView {
 
 	private void configureUIComponents() {
 		frmRegistro = new JFrame();
-		frmRegistro.getContentPane().setBackground(new Color(153, 204, 204));
+		frmRegistro.getContentPane().setBackground(Color.BLACK);
 		frmRegistro.getContentPane().setForeground(Color.BLACK);
 		frmRegistro.setTitle("Netflix: Registro");
-		frmRegistro.setBounds(100, 100, 450, 292);
+		frmRegistro.setBounds(100, 100, 483, 325);
 		frmRegistro.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmRegistro.getContentPane().setLayout(null);
 		frmRegistro.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\adiaz\\OneDrive\\Escritorio\\Programaci\u00F3n\\Workspace\\PracticaNetflix\\assets\\icon netflix.png"));
 
 		lblRegistro = new JLabel("Crear Cuenta");
-		lblRegistro.setForeground(Color.WHITE);
-		lblRegistro.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 28));
-		lblRegistro.setBounds(121, 0, 197, 54);
+		lblRegistro.setForeground(new Color(204, 51, 51));
+		lblRegistro.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 30));
+		lblRegistro.setBounds(130, 0, 203, 54);
 		frmRegistro.getContentPane().add(lblRegistro);
 
 		lblNewUsuario = new JLabel("Usuario");
-		lblNewUsuario.setForeground(Color.WHITE);
-		lblNewUsuario.setFont(new Font("Times New Roman", Font.BOLD, 17));
+		lblNewUsuario.setForeground(new Color(204, 51, 51));
+		lblNewUsuario.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNewUsuario.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblNewUsuario.setBounds(107, 93, 62, 19);
+		lblNewUsuario.setBounds(130, 112, 62, 19);
 		frmRegistro.getContentPane().add(lblNewUsuario);
 
 		lblNewPassword = new JLabel("Contrase\u00F1a");
-		lblNewPassword.setForeground(Color.WHITE);
-		lblNewPassword.setFont(new Font("Times New Roman", Font.BOLD, 17));
+		lblNewPassword.setForeground(new Color(204, 51, 51));
+		lblNewPassword.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblNewPassword.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblNewPassword.setBounds(74, 123, 96, 20);
+		lblNewPassword.setBounds(82, 147, 110, 20);
 		frmRegistro.getContentPane().add(lblNewPassword);
 
 		lblNewPasswordRepetir = new JLabel("Repetir contrase\u00F1a");
-		lblNewPasswordRepetir.setForeground(Color.WHITE);
+		lblNewPasswordRepetir.setForeground(new Color(204, 51, 51));
 		lblNewPasswordRepetir.setBackground(new Color(240, 240, 240));
-		lblNewPasswordRepetir.setFont(new Font("Times New Roman", Font.BOLD, 17));
-		lblNewPasswordRepetir.setBounds(28, 154, 141, 21);
+		lblNewPasswordRepetir.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblNewPasswordRepetir.setBounds(36, 183, 156, 21);
 		frmRegistro.getContentPane().add(lblNewPasswordRepetir);
 
 		textUsuario = new JTextField();
-		textUsuario.setFont(new Font("Times New Roman", Font.PLAIN, 16));
-		textUsuario.setBounds(202, 93, 141, 20);
+		textUsuario.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		textUsuario.setBounds(222, 108, 191, 25);
 		frmRegistro.getContentPane().add(textUsuario);
 		textUsuario.setColumns(10);
 
 		pfPassword = new JPasswordField();
-		pfPassword.setFont(new Font("Times New Roman", Font.PLAIN, 16));
-		pfPassword.setBounds(202, 124, 141, 20);
+		pfPassword.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		pfPassword.setBounds(222, 144, 191, 25);
 		frmRegistro.getContentPane().add(pfPassword);
 
 		pfPasswordRepetir = new JPasswordField();
-		pfPasswordRepetir.setFont(new Font("Times New Roman", Font.PLAIN, 16));
-		pfPasswordRepetir.setBounds(202, 155, 141, 20);
+		pfPasswordRepetir.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		pfPasswordRepetir.setBounds(222, 180, 191, 25);
 		frmRegistro.getContentPane().add(pfPasswordRepetir);
 
 		btnRegistro = new JButton("Registrarse");
-		btnRegistro.setBackground(new Color(102, 204, 0));
+		btnRegistro.setBackground(new Color(51, 204, 51));
 		btnRegistro.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnRegistro.setBounds(255, 213, 107, 29);
+		btnRegistro.setBounds(302, 238, 123, 29);
 		frmRegistro.getContentPane().add(btnRegistro);
 
 		btnInicioSesion = new JButton("Volver");
-		btnInicioSesion.setBackground(new Color(255, 204, 51));
+		btnInicioSesion.setBackground(new Color(255, 255, 102));
 		btnInicioSesion.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnInicioSesion.setBounds(73, 213, 107, 29);
+		btnInicioSesion.setBounds(48, 238, 123, 29);
 		frmRegistro.getContentPane().add(btnInicioSesion);
 
 		lblEmail = new JLabel("Correo electr\u00F3nico");
 		lblEmail.setHorizontalAlignment(SwingConstants.TRAILING);
-		lblEmail.setForeground(Color.WHITE);
-		lblEmail.setFont(new Font("Times New Roman", Font.BOLD, 17));
-		lblEmail.setBounds(0, 63, 169, 19);
+		lblEmail.setForeground(new Color(204, 51, 51));
+		lblEmail.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblEmail.setBounds(23, 76, 169, 19);
 		frmRegistro.getContentPane().add(lblEmail);
 
 		textEmail = new JTextField();
-		textEmail.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		textEmail.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		textEmail.setColumns(10);
-		textEmail.setBounds(202, 64, 141, 20);
+		textEmail.setBounds(222, 72, 191, 25);
 		frmRegistro.getContentPane().add(textEmail);
 		frmRegistro.setVisible(true);
 	}

@@ -74,8 +74,8 @@ public class FilmsView {
 	private void configureComponents() {
 		frmNetflix = new JFrame();
 		frmNetflix.setTitle("Netflix");
-		frmNetflix.getContentPane().setBackground(Color.DARK_GRAY);
-		frmNetflix.setBounds(100, 100, 860, 570);
+		frmNetflix.getContentPane().setBackground(new Color(0, 0, 0));
+		frmNetflix.setBounds(100, 100, 860, 580);
 		frmNetflix.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNetflix.getContentPane().setLayout(null);
 		frmNetflix.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\adiaz\\OneDrive\\Escritorio\\Programaci\u00F3n\\Workspace\\PracticaNetflix\\assets\\icon netflix.png"));
@@ -142,20 +142,20 @@ public class FilmsView {
 		frmNetflix.getContentPane().add(lblDescription);
 
 		btnBack = new JButton("Back");
-		btnBack.setBackground(new Color(153, 255, 204));
+		btnBack.setBackground(new Color(51, 204, 204));
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnBack.setBounds(35, 476, 301, 44);
 		frmNetflix.getContentPane().add(btnBack);
 
 		btnNext = new JButton("Next");
-		btnNext.setBackground(new Color(153, 255, 204));
+		btnNext.setBackground(new Color(51, 204, 204));
 		btnNext.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNext.setBounds(524, 476, 301, 44);
 		frmNetflix.getContentPane().add(btnNext);
 
 		txtCast = new JTextPane();
 		txtCast.setForeground(Color.WHITE);
-		txtCast.setBackground(Color.DARK_GRAY);
+		txtCast.setBackground(new Color(0, 0, 0));
 		txtCast.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtCast.setEditable(false);
 		txtCast.setBounds(43, 352, 375, 99);
@@ -163,7 +163,7 @@ public class FilmsView {
 
 		txtDescription = new JTextPane();
 		txtDescription.setForeground(Color.WHITE);
-		txtDescription.setBackground(Color.DARK_GRAY);
+		txtDescription.setBackground(new Color(0, 0, 0));
 		txtDescription.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtDescription.setBounds(439, 352, 375, 99);
 		frmNetflix.getContentPane().add(txtDescription);
@@ -176,10 +176,10 @@ public class FilmsView {
 
 		txtListed = new JTextPane();
 		txtListed.setForeground(Color.WHITE);
-		txtListed.setBackground(Color.DARK_GRAY);
+		txtListed.setBackground(new Color(0, 0, 0));
 		txtListed.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtListed.setEditable(false);
-		txtListed.setBounds(43, 241, 382, 71);
+		txtListed.setBounds(43, 241, 375, 71);
 		frmNetflix.getContentPane().add(txtListed);
 
 		btnFavorito = new JButton("FAV");
@@ -189,14 +189,15 @@ public class FilmsView {
 		frmNetflix.getContentPane().add(btnFavorito);
 
 		btnBuscador = new JButton("Buscador");
-		btnBuscador.setBackground(new Color(153, 255, 153));
+		btnBuscador.setBackground(new Color(102, 153, 102));
 		btnBuscador.setForeground(new Color(0, 0, 0));
 		btnBuscador.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnBuscador.setBounds(728, 82, 91, 55);
+		btnBuscador.setBounds(728, 82, 91, 44);
 		frmNetflix.getContentPane().add(btnBuscador);
 
 		btnMyFavs = new JButton("Mis favoritos");
-		btnMyFavs.setBackground(new Color(51, 153, 255));
+		btnMyFavs.setForeground(new Color(0, 0, 0));
+		btnMyFavs.setBackground(new Color(51, 102, 204));
 		btnMyFavs.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnMyFavs.setBounds(367, 476, 127, 44);
 		frmNetflix.getContentPane().add(btnMyFavs);

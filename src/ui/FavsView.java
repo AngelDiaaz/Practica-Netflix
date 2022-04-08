@@ -68,8 +68,8 @@ public class FavsView {
 	private void configureComponents() {
 		frmNetflixBsqueda = new JFrame();
 		frmNetflixBsqueda.setTitle("Netflix: B\u00FAsqueda");
-		frmNetflixBsqueda.getContentPane().setBackground(Color.DARK_GRAY);
-		frmNetflixBsqueda.setBounds(100, 100, 860, 570);
+		frmNetflixBsqueda.getContentPane().setBackground(new Color(0, 0, 0));
+		frmNetflixBsqueda.setBounds(100, 100, 860, 580);
 		frmNetflixBsqueda.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNetflixBsqueda.getContentPane().setLayout(null);
 		frmNetflixBsqueda.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\adiaz\\OneDrive\\Escritorio\\Programaci\u00F3n\\Workspace\\PracticaNetflix\\assets\\icon netflix.png"));
@@ -135,20 +135,20 @@ public class FavsView {
 		frmNetflixBsqueda.getContentPane().add(lblDescription);
 
 		btnBack = new JButton("Back");
-		btnBack.setBackground(new Color(153, 255, 204));
+		btnBack.setBackground(new Color(51, 204, 204));
 		btnBack.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnBack.setBounds(35, 476, 390, 44);
 		frmNetflixBsqueda.getContentPane().add(btnBack);
 
 		btnNext = new JButton("Next");
 		btnNext.setForeground(new Color(0, 0, 0));
-		btnNext.setBackground(new Color(153, 255, 204));
+		btnNext.setBackground(new Color(51, 204, 204));
 		btnNext.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		btnNext.setBounds(435, 476, 390, 44);
 		frmNetflixBsqueda.getContentPane().add(btnNext);
 
 		txtCast = new JTextPane();
-		txtCast.setBackground(Color.DARK_GRAY);
+		txtCast.setBackground(new Color(0, 0, 0));
 		txtCast.setForeground(Color.WHITE);
 		txtCast.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtCast.setEditable(false);
@@ -157,7 +157,7 @@ public class FavsView {
 
 		txtDescription = new JTextPane();
 		txtDescription.setForeground(Color.WHITE);
-		txtDescription.setBackground(Color.DARK_GRAY);
+		txtDescription.setBackground(new Color(0, 0, 0));
 		txtDescription.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtDescription.setBounds(439, 352, 375, 99);
 		frmNetflixBsqueda.getContentPane().add(txtDescription);
@@ -169,11 +169,11 @@ public class FavsView {
 		frmNetflixBsqueda.getContentPane().add(lblCast);
 
 		txtListed = new JTextPane();
-		txtListed.setBackground(Color.DARK_GRAY);
+		txtListed.setBackground(new Color(0, 0, 0));
 		txtListed.setForeground(Color.WHITE);
 		txtListed.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtListed.setEditable(false);
-		txtListed.setBounds(43, 241, 382, 71);
+		txtListed.setBounds(43, 241, 375, 71);
 		frmNetflixBsqueda.getContentPane().add(txtListed);
 
 		btnDelete = new JButton("QUITAR");

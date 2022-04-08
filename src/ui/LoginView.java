@@ -171,7 +171,7 @@ public class LoginView {
 				frmLogin.setVisible(false);
 				new FilmsView();
 			} else {
-				JOptionPane.showMessageDialog(btnEntrar, "Login incorrecto");
+				JOptionPane.showMessageDialog(frmLogin, "Login incorrecto");
 			}
 		}
 }		

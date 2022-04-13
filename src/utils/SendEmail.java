@@ -13,6 +13,12 @@ import javax.swing.JOptionPane;
 
 public class SendEmail {
 	
+	/**
+	 * Metodo que envia un email al correo que nosotros queramos, con el texto que nosotros queramos
+	 * @param email Email de la persona que le vamos a enviar el correo
+	 * @param pin Pin de autentificacion para registrarse o cambiar contraseña
+	 */
+	
 	public static void email(String email, int pin) {
 		final String username = CredentialsHelper.email();
 		final String password = CredentialsHelper.passwordEmail();

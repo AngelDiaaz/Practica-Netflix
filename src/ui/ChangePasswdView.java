@@ -119,14 +119,21 @@ public class ChangePasswdView {
 			}
 		});
 	}
+	
+	/**
+	 * Cambia la contraseña del usuario en la base de datos
+	 */
 
 	private void updatePasswd() {
 		String passwd = new String(pfPassword.getPassword());
 		String repetir = new String(pfPasswordRepetir.getPassword());
+		
+		//Si la contraseña es igual en los dos campos que se pide y no estan vacios los campos
 		if (passwd.equals(repetir) && !passwd.equals("") && !repetir.equals("")) {
 
 			boolean update = usuarioDAO.updatePassword(HashPasswd.hash(HashPasswd.hash(passwd, ""), ""), usuario);
 
+			// Si se ha podido cambiar la contraseña
 			if (update) {
 				JOptionPane.showMessageDialog(btnGuardar, "La contraseña ha sido cambia");
 				frmChange.dispose();

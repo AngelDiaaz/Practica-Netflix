@@ -12,25 +12,56 @@ public class CredentialsHelper {
 
 	private final static String appSettingsFile = "assets/appsettings.json";
 
+	/**
+	 * Te lee el fichero json y te devuelve el userDB
+	 * @return userDB
+	 */
+	
 	public static String userDB() {
 		return readGson("userDB");
 	}
+	
+	/**
+	 * Te lee el fichero json y te devuelve el passwordDB
+	 * @return passwordDB
+	 */
 	
 	public static String passwordDB() {
 		return readGson("passwordDB");
 	}
 	
+	/**
+	 * Te lee el fichero json y te devuelve el urlDB
+	 * @return urlDB
+	 */
+	
 	public static String urlDB() {
 		return readGson("urlDB");
 	}
+	
+	/**
+	 * Te lee el fichero json y te devuelve el email
+	 * @return email
+	 */
 	
 	public static String email() {
 		return readGson("email");
 	}
 	
+	/**
+	 * Te lee el fichero json y te devuelve el passwordEmail
+	 * @return passwordEmail
+	 */
+	
 	public static String passwordEmail() {
 		return readGson("passwordEmail");
 	}
+	
+	/**
+	 * Lee el fichero json que nosostros le pasamos
+	 * @param string Nombre del campo que queremos que nos lea
+	 * @return String con el  campo que nosotros hemos querido saber
+	 */
 	
 	private static String readGson(String string) {
 

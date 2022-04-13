@@ -235,7 +235,7 @@ public class FilmsView {
 				if (select >= 0 && select <= 3) {
 					String busqueda = JOptionPane.showInputDialog(frmNetflix, "Buscador de shows");
 					try {
-						new SearchView(frmNetflix, buscar, busqueda, first, separador);
+						new SearchView(frmNetflix, buscar, busqueda, first, separador, questionFile);
 						frmNetflix.setVisible(false);
 					} catch (Exception e2) {
 						JOptionPane.showMessageDialog(frmNetflix, "No se ha encontrado nada, vuelve a intentarlo");
@@ -294,6 +294,7 @@ public class FilmsView {
 
 				questionFile();
 
+				//Si es la primera vez que el documento se va a escribir se pregunta por el separador
 				if (first) {
 					// Si no se ha preguntado cual tipo de separador queremos que use para almacenar
 					// la id en el fichero

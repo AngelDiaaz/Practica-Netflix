@@ -141,11 +141,16 @@ public class ForgotView {
 		});
 	}
 	
+	/**
+	 * Comprueba si el usuario es correcto y el pin que hemos enviado al correo electronico, si es correcto te lleva a la pestaña para cambiar la contraseña 
+	 */
+	
 	private void comprobar() {
 		var usuarios = usuarioDAO.getAll();
 		int pin = (int) (Math.random() * 999999) + 100000;
 		boolean correcto = false;
 		
+		//Compruebo si el usuario es correcto
 		for (Usuario usu : usuarios) {
 			if(usu.getUsuario().equals(txtUsuario.getText()) && usu.getEmail().equals(txtEmail.getText())) {
 				correcto = true;
@@ -153,11 +158,12 @@ public class ForgotView {
 			}
 		}
 		
+		//Si es correcto el usuario
 		if(correcto) {
 			SendEmail.email(txtEmail.getText(), pin);
 			int num = Integer.parseInt(JOptionPane
 					.showInputDialog("Ingrese el número que se le ha enviado al correo para poder registrarse"));
-			if(num == pin) {
+			if(num == pin) { //Si el pin es correcto
 				frmForgot.dispose();
 				new ChangePasswdView(usuario);
 			} else {

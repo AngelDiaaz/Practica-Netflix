@@ -47,14 +47,16 @@ public class SearchView {
 	private boolean first;
 	private String separador;
 	private JButton btnX;
+	private boolean questionFile;
 
 	/**
 	 * Create the application.
 	 */
-	public SearchView(JFrame parent, String consultar, String text, boolean first, String separador) {
+	public SearchView(JFrame parent, String consultar, String text, boolean first, String separador, boolean questionFile) {
 		this.parent = parent;
 		this.first = first;
 		this.separador = separador;
+		this.questionFile = questionFile;
 		this.showDAO = new ShowDAO();
 		this.shows = showDAO.search(consultar, text);
 		initialize();
@@ -233,8 +235,11 @@ public class SearchView {
 		btnFavorito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
+				questionFile();
+				
+				//Si es la primera vez que el documento se va a escribir se pregunta por el separador
 				if (first) {
-					int seleccion = JOptionPane.showOptionDialog(null,
+					int seleccion = JOptionPane.showOptionDialog(frmNetflixBsqueda,
 							"¿Cúal separador quieres que se use en el documento?", "Selector de opciones",
 							JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, // null para icono por
 																									// defecto.
@@ -274,6 +279,12 @@ public class SearchView {
 		}
 		showShows(index);
 	}
+	
+	/**
+	 * Muestra los todos los datos del show
+	 * 
+	 * @param index Index del show en la base de datos
+	 */
 
 	private void showShows(int index) {
 
@@ -302,6 +313,29 @@ public class SearchView {
 			btnFavorito.setBackground(Color.WHITE);
 		} else {
 			btnFavorito.setBackground(new Color(255, 255, 102));
+		}
+	}
+	
+	/**
+	 * Metodo que pregunta si quieres cargar el fichero o eliminarlo
+	 */
+
+	private void questionFile() {
+		// Si no se ha preguntado si se quiere crear o cargar el fichero con los shows
+		// favoritos
+		if (!questionFile) {
+			int resp = JOptionPane.showConfirmDialog(frmNetflixBsqueda,
+					"¿Quieres cargar un fichero existente con los shows favoritos?\n(Sino se creará uno nuevo)");
+			if (JOptionPane.OK_OPTION != resp) {
+				// Al generar un nuevo archivo se sobrescribira todo, eliminando lo que habia
+				// anteriormente
+				DocumentWrite.write("", "", false, false);
+				showShows(index);
+			} else {
+				// Si seleccionamos cargar un fichero no te preguntara por los separadores
+				first = false;
+			}
+			questionFile = true;
 		}
 	}
 

@@ -1,6 +1,7 @@
 package models;
 
 public class Show {
+	//Propiedades
 	private String id;
 	private String type;
 	private String title;
@@ -14,6 +15,7 @@ public class Show {
 	private String listed;
 	private String description;
 
+	//Constructor
 	public Show(String id, String type, String title, String director, String cast, String country, String date,
 			String year, String rating, String duration, String listed, String description) {
 		super();
@@ -31,6 +33,7 @@ public class Show {
 		this.description = description;
 	}
 	
+	//Getters y setters
 	public String getId() {
 		return id;
 	}

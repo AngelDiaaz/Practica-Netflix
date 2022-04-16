@@ -14,7 +14,7 @@ import models.Show;
 
 public class DocumentWrite {
 	
-	private final static String fav = "assets/fav.csv";
+	private static String fav = "assets/fav.csv";
 	private static File f = new File(fav);
 
 	/**
@@ -26,7 +26,10 @@ public class DocumentWrite {
 	 *                     sobrescribir el documento con el texto que le pasamos
 	 */
 
-	public static void write(String text, String separador, boolean sobrescribir, boolean comprobar) {
+	public static void write(String file, String text, String separador, boolean sobrescribir, boolean comprobar) {
+		fav = "assets/" + file + ".csv";
+		f = new File(fav);
+		
 		try {
 			FileWriter fw = new FileWriter(f, sobrescribir);
 
@@ -55,7 +58,10 @@ public class DocumentWrite {
 	 * @param separador Caracter con el que esta separado las ids en el archivo csv
 	 */
 
-	public static void eliminarFavoritos(String id, String separador) {
+	public static void eliminarFavoritos(String file, String id, String separador) {
+		fav  = "assets/" + file + ".csv";
+		f = new File(fav);
+		
 		Scanner sc = null;
 		boolean sobrescribir = false;
 		try {
@@ -71,7 +77,7 @@ public class DocumentWrite {
 					// Cuando el id coincide no se escribe en el archivo csv, la primera vez que se
 					// usa este metodo se sobrescribe el csv
 					if (!id.equals(trozo)) {
-						write(trozo, separador, sobrescribir, true);
+						write(file, trozo, separador, sobrescribir, true);
 						sobrescribir = true;
 					}
 				}

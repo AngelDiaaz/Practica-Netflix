@@ -41,6 +41,7 @@ public class FavsView {
 	private JTextPane txtDescription;
 	private JButton btnDelete;
 	private JFrame parent;
+	private String file;
 	private int index = 0;
 	private String separador;
 	private JButton btnX;
@@ -48,9 +49,10 @@ public class FavsView {
 	/**
 	 * Create the application.
 	 */
-	public FavsView(JFrame parent, String separador) {
+	public FavsView(JFrame parent, String separador, String file) {
 		this.parent = parent;
 		this.separador = separador;
+		this.file = file;
 		this.shows = DocumentWrite.readFavs();
 		initialize();
 		this.frmNetflixBsqueda.setVisible(true);
@@ -228,14 +230,14 @@ public class FavsView {
 		});
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DocumentWrite.eliminarFavoritos(shows.get(index).getId(), separador);
+				DocumentWrite.eliminarFavoritos(file, shows.get(index).getId(), separador);
 
 				// Si se quiere borrar el ultimo show de la lista de favoritos, te lanza un
 				// mensaje informativo y te vuelve a enviar a la vista de los shows principal
 				if (shows.size() == 1) {
 					JOptionPane.showMessageDialog(frmNetflixBsqueda,
 							"Se ha borrado todos los favoritos de la lista, añade más");
-					DocumentWrite.write("", "", false, false);
+					DocumentWrite.write(file, "", "", false, false);
 					frmNetflixBsqueda.dispose();
 					parent.setVisible(true);
 				} else {

@@ -46,9 +46,9 @@ public class FilmsView {
 	private JButton btnMyFavs;
 	private JButton btnX;
 	private int index = 0;
+	private String file = "fav";
 	private boolean first = true;
 	private boolean questionFile = false;
-	private boolean sobrescribir = true;
 	private String separador = ","; // Pongo la coma por defecto, por si quiero cargar un fichero existente, que use
 									// ese separador
 
@@ -78,8 +78,8 @@ public class FilmsView {
 		frmNetflix.setBounds(100, 100, 860, 580);
 		frmNetflix.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmNetflix.getContentPane().setLayout(null);
-		frmNetflix.setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\adiaz\\OneDrive\\Escritorio\\Programaci\u00F3n\\Workspace\\PracticaNetflix\\assets\\icon netflix.png"));
-
+		frmNetflix.setIconImage(Toolkit.getDefaultToolkit().getImage(
+				"C:\\Users\\adiaz\\OneDrive\\Escritorio\\Programaci\u00F3n\\Workspace\\PracticaNetflix\\assets\\icon netflix.png"));
 
 		lblTittle = new JLabel("");
 		lblTittle.setForeground(new Color(255, 255, 255));
@@ -201,7 +201,7 @@ public class FilmsView {
 		btnMyFavs.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnMyFavs.setBounds(367, 476, 127, 44);
 		frmNetflix.getContentPane().add(btnMyFavs);
-		
+
 		btnX = new JButton("X");
 		btnX.setForeground(Color.WHITE);
 		btnX.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -235,7 +235,7 @@ public class FilmsView {
 				if (select >= 0 && select <= 3) {
 					String busqueda = JOptionPane.showInputDialog(frmNetflix, "Buscador de shows");
 					try {
-						new SearchView(frmNetflix, buscar, busqueda, first, separador, questionFile);
+						new SearchView(frmNetflix, buscar, busqueda, first, separador, questionFile, file);
 						frmNetflix.setVisible(false);
 					} catch (Exception e2) {
 						JOptionPane.showMessageDialog(frmNetflix, "No se ha encontrado nada, vuelve a intentarlo");
@@ -246,10 +246,8 @@ public class FilmsView {
 		btnMyFavs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				questionFile();
-
 				try {
-					new FavsView(frmNetflix, separador);
+					new FavsView(frmNetflix, separador, file);
 					frmNetflix.setVisible(false);
 				} catch (Exception e2) {
 					JOptionPane.showMessageDialog(frmNetflix, "No hay ningún show registrado, añade alguno");
@@ -294,7 +292,8 @@ public class FilmsView {
 
 				questionFile();
 
-				//Si es la primera vez que el documento se va a escribir se pregunta por el separador
+				// Si es la primera vez que el documento se va a escribir se pregunta por el
+				// separador
 				if (first) {
 					// Si no se ha preguntado cual tipo de separador queremos que use para almacenar
 					// la id en el fichero
@@ -312,15 +311,13 @@ public class FilmsView {
 						separador = "\t";
 					}
 				}
-				//Para que se ponga el boton en amarrillo al darle
+				// Para que se ponga el boton en amarrillo al darle
 				btnFavorito.setBackground(new Color(255, 255, 102));
-				
-				
-				// Cada vez que se pulsa el boton escribe el id del show en un
+
+				// Cada vez que se pulsa el boton, escribe el id del show en un
 				// documento
-				DocumentWrite.write(shows.get(index).getId(), separador, sobrescribir, false);
+				DocumentWrite.write(file, shows.get(index).getId(), separador, true, false);
 				first = false;
-				sobrescribir = true;
 			}
 		});
 	}
@@ -330,21 +327,13 @@ public class FilmsView {
 	 */
 
 	private void questionFile() {
-		// Si no se ha preguntado si se quiere crear o cargar el fichero con los shows
-		// favoritos
+		// Si no se ha preguntado como quiere llamar el fichero
 		if (!questionFile) {
-			int resp = JOptionPane.showConfirmDialog(frmNetflix,
-					"¿Quieres cargar un fichero existente con los shows favoritos?\n(Sino se creará uno nuevo)");
-			if (JOptionPane.OK_OPTION != resp) {
-				// Al generar un nuevo archivo se sobrescribira todo, eliminando lo que habia
-				// anteriormente
-				DocumentWrite.write("", "", false, false);
-				sobrescribir = false;
-				showShows(index);
-			} else {
-				// Si seleccionamos cargar un fichero no te preguntara por los separadores
-				first = false;
-			}
+			showShows(index);
+			// Pregunto como quiero llamar al fichero para guardar las ids de los shows
+			file = JOptionPane.showInputDialog(frmNetflix, "¿Cómo quieres llamar al archivo?", null); 
+
+			//Para que solo pregunte una vez como queremos que se llame el archivo
 			questionFile = true;
 		}
 	}
@@ -394,15 +383,16 @@ public class FilmsView {
 
 		comprobarFav(shows.get(index));
 	}
-	
+
 	/**
-	 * Comprueba si el show esta en favorito o no, si lo esta el boton de fav se pondra amarrillo, sino se dejara en blanco
+	 * Comprueba si el show esta en favorito o no, si lo esta el boton de fav se
+	 * pondra amarrillo, sino se dejara en blanco
 	 *
 	 * @param show Show que queremos comprobar si esta en favorito
 	 */
-	
+
 	private void comprobarFav(Show show) {
-		if(DocumentWrite.comprobarFavoritos(show.getId())) {
+		if (DocumentWrite.comprobarFavoritos(show.getId())) {
 			btnFavorito.setBackground(Color.WHITE);
 		} else {
 			btnFavorito.setBackground(new Color(255, 255, 102));
